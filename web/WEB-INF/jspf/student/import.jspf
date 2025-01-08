@@ -1,0 +1,39 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<%@ page import="com.internship.model.Student" %>
+<%@ page import="com.internship.controller.DBConnection" %>
+<%@ page import="java.sql.*" %>
+<% 
+        Student student = null;
+        try {
+            Connection conn = DBConnection.dbConnect();
+            int userID = Integer.parseInt(session.getAttribute("userID").toString());
+            String sql = "SELECT * FROM student WHERE userID = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()) {
+                student = new Student();
+                student.setStudentName(rs.getString("studentName"));
+                student.setStudentIC(rs.getString("studentIC"));
+                student.setStudentMatric(rs.getString("studentMatric"));
+                student.setStudentAddress(rs.getString("studentAddress"));
+                student.setStudentProgramme(rs.getString("studentCourse"));
+                student.setStudentSemester(rs.getString("studentPart"));
+                student.setAcademicAdvisor(rs.getString("academicAdvisor"));
+                student.setStudentCGPA(rs.getFloat("studentCGPA"));
+                student.setStudentEmail(rs.getString("studentEmail"));
+                student.setLetterAddress(rs.getString("studentHomeAddress"));
+                student.setGuardianName(rs.getString("guardianName"));
+                student.setGuardianRelation(rs.getString("guardianRelation"));
+                student.setGuardianPhone(rs.getString("guardianPhone"));
+                student.setGuardianAddress(rs.getString("guardianAddress"));
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch(Exception e) {
+            out.println("Error: " + e.getMessage());
+        }
+    %>

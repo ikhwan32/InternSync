@@ -1,0 +1,224 @@
+/* Sidebar Styles */
+body {
+    background: #f8f9fa;
+    font-family: 'Inter', sans-serif;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 100vh;
+    background: #1e1b4b;
+    color: #fff;
+    transition: all 0.3s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+#sidebar.active {
+    min-width: 60px;
+    max-width: 60px;
+}
+
+#sidebar.active .sidebar-header h3,
+#sidebar.active ul li a span,
+#sidebar.active ul li.has-submenu i.fa-chevron-down {
+    display: none;
+}
+
+#sidebar .sidebar-header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#sidebar .sidebar-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+#sidebarCollapse {
+    color: #fff;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+#sidebarCollapse:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#sidebar ul.components {
+    padding: 0.5rem 0;
+}
+
+#sidebar ul li a {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+#sidebar ul li a.active,
+#sidebar ul li a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#sidebar ul li a i:first-child {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+#sidebar ul li.has-submenu i.fa-chevron-down {
+    font-size: 0.8rem;
+}
+
+#sidebar.active ul li a {
+    padding: 0.75rem;
+    justify-content: center;
+}
+
+#sidebar.active ul li a i:first-child {
+    margin-right: 0;
+    font-size: 1.1rem;
+}
+
+/* Content Styles */
+#content {
+    width: 100%;
+    min-height: 100vh;
+    transition: all 0.3s;
+    background: #0f172a;
+    margin-left: 250px; /* Adjust based on sidebar width */
+}
+
+#content.sidebar-active {
+    margin-left: 60px; /* Adjust based on collapsed sidebar width */
+}
+
+.content-section {
+    background: transparent;
+    border-radius: 0.5rem;
+}
+
+.card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.forms-subtitle {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+/* Form Styles */
+.form-label {
+    margin-bottom: 0.25rem;
+}
+
+.form-control {
+    margin-bottom: 1rem;
+}
+
+/* Sidebar Footer Styles */
+.sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logged-in-as {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.logged-in-as i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.logout {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.logout:hover {
+    color: #fff;
+}
+
+.logout i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* Adjustments for Collapsed Sidebar */
+#sidebar.active .sidebar-footer .logged-in-as span,
+#sidebar.active .sidebar-footer .logout span {
+    display: none;
+}
+
+#sidebar.active .sidebar-footer .logged-in-as i,
+#sidebar.active .sidebar-footer .logout i {
+    margin-right: 0;
+    font-size: 1.5rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+
+    #sidebar.active {
+        margin-left: 0;
+        min-width: 60px;
+        max-width: 60px;
+    }
+
+    #content {
+        margin-left: 0;
+    }
+
+    #content.sidebar-active {
+        margin-left: 60px;
+    }
+}
