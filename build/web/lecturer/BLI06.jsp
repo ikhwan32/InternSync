@@ -542,17 +542,295 @@
                                             <!-- Section 3 -->
                                             <div id="section-3" class="form-section hidden">
                                                 <h3 class="text-xl font-bold mb-4">Section B: Student Evaluation</h3>
-                                                <div class="mb-4">
-                                                    <label class="block text-gray-700">1. Suitability the assignment
-                                                        given</label>
-                                                    <select class="w-full p-2 border rounded" name="selectedb1"
-                                                        id="b1selected">
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                    </select>
+                                                <div class="mb-6">
+                                                    <!-- q11 -->
+                                                    <div class="flex flex-col md:flex-row md:items-center gap-4 mb-2">
+                                                        <label class="text-gray-700 font-medium flex-1">1. Suitability the assignment given</label>
+                                                        <div class="flex gap-2">
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q11" id="q11_1" value="1"
+                                                                    class="rating-input hidden">
+                                                                <label for="q11_1"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">1</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q11" id="q11_2" value="2"
+                                                                    class="rating-input hidden">
+                                                                <label for="q11_2"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">2</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q11" id="q11_3" value="3"
+                                                                    class="rating-input hidden">
+                                                                <label for="q11_3"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">3</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q11" id="q11_4" value="4"
+                                                                    class="rating-input hidden">
+                                                                <label for="q11_4"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">4</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q11" id="q11_5" value="5"
+                                                                    class="rating-input hidden">
+                                                                <label for="q11_5"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">5</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- q12 -->
+                                                    <div class="flex flex-col md:flex-row md:items-center gap-4 mb-2">
+                                                        <label class="text-gray-700 font-medium flex-1">2. Guidance from organization supervisor</label>
+                                                        <div class="flex gap-2">
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q12" id="q12_1" value="1"
+                                                                    class="rating-input hidden">
+                                                                <label for="q12_1"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">1</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q12" id="q12_2" value="2"
+                                                                    class="rating-input hidden">
+                                                                <label for="q12_2"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">2</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q12" id="q12_3" value="3"
+                                                                    class="rating-input hidden">
+                                                                <label for="q12_3"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">3</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q12" id="q12_4" value="4"
+                                                                    class="rating-input hidden">
+                                                                <label for="q12_4"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">4</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q12" id="q12_5" value="5"
+                                                                    class="rating-input hidden">
+                                                                <label for="q12_5"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">5</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- q13 -->
+                                                    <div class="flex flex-col md:flex-row md:items-center gap-4 mb-2">
+                                                        <label class="text-gray-700 font-medium flex-1">3. Cooperation from organization staff</label>
+                                                        <div class="flex gap-2">
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q13" id="q13_1" value="1"
+                                                                    class="rating-input hidden">
+                                                                <label for="q13_1"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">1</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q13" id="q13_2" value="2"
+                                                                    class="rating-input hidden">
+                                                                <label for="q13_2"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">2</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q13" id="q13_3" value="3"
+                                                                    class="rating-input hidden">
+                                                                <label for="q13_3"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">3</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q13" id="q13_4" value="4"
+                                                                    class="rating-input hidden">
+                                                                <label for="q13_4"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">4</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q13" id="q13_5" value="5"
+                                                                    class="rating-input hidden">
+                                                                <label for="q13_5"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">5</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- q14 -->
+                                                    <div class="flex flex-col md:flex-row md:items-center gap-4 mb-2">
+                                                        <label class="text-gray-700 font-medium flex-1">4. Comfort of the working space</label>
+                                                        <div class="flex gap-2">
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q14" id="q14_1" value="1"
+                                                                    class="rating-input hidden">
+                                                                <label for="q14_1"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">1</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q14" id="q14_2" value="2"
+                                                                    class="rating-input hidden">
+                                                                <label for="q14_2"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">2</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q14" id="q14_3" value="3"
+                                                                    class="rating-input hidden">
+                                                                <label for="q14_3"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">3</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q14" id="q14_4" value="4"
+                                                                    class="rating-input hidden">
+                                                                <label for="q14_4"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">4</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q14" id="q14_5" value="5"
+                                                                    class="rating-input hidden">
+                                                                <label for="q14_5"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">5</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- q15 -->
+                                                    <div class="flex flex-col md:flex-row md:items-center gap-4 mb-2">
+                                                        <label class="text-gray-700 font-medium flex-1">5. Provide computer hardware and software</label>
+                                                        <div class="flex gap-2">
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q15" id="q15_1" value="1"
+                                                                    class="rating-input hidden">
+                                                                <label for="q15_1"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">1</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q15" id="q15_2" value="2"
+                                                                    class="rating-input hidden">
+                                                                <label for="q15_2"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">2</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q15" id="q15_3" value="3"
+                                                                    class="rating-input hidden">
+                                                                <label for="q15_3"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">3</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q15" id="q15_4" value="4"
+                                                                    class="rating-input hidden">
+                                                                <label for="q15_4"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">4</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q15" id="q15_5" value="5"
+                                                                    class="rating-input hidden">
+                                                                <label for="q15_5"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">5</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- q16 -->
+                                                    <div class="flex flex-col md:flex-row md:items-center gap-4 mb-2">
+                                                        <label class="text-gray-700 font-medium flex-1">6. Organization location environment (public facility, safety and others)</label>
+                                                        <div class="flex gap-2">
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q16" id="q16_1" value="1"
+                                                                    class="rating-input hidden">
+                                                                <label for="q16_1"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">1</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q16" id="q16_2" value="2"
+                                                                    class="rating-input hidden">
+                                                                <label for="q16_2"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">2</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q16" id="q16_3" value="3"
+                                                                    class="rating-input hidden">
+                                                                <label for="q16_3"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">3</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q16" id="q16_4" value="4"
+                                                                    class="rating-input hidden">
+                                                                <label for="q16_4"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">4</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q16" id="q16_5" value="5"
+                                                                    class="rating-input hidden">
+                                                                <label for="q16_5"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">5</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- p17 -->
+                                                    <div class="flex flex-col md:flex-row md:items-center gap-4 mb-2">
+                                                        <label class="text-gray-700 font-medium flex-1">7. Industrial training suitability</label>
+                                                        <div class="flex gap-2">
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q17" id="q17_1" value="1"
+                                                                    class="rating-input hidden">
+                                                                <label for="q17_1"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">1</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q17" id="q17_2" value="2"
+                                                                    class="rating-input hidden">
+                                                                <label for="q17_2"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">2</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q17" id="q17_3" value="3"
+                                                                    class="rating-input hidden">
+                                                                <label for="q17_3"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">3</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q17" id="q17_4" value="4"
+                                                                    class="rating-input hidden">
+                                                                <label for="q17_4"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">4</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q17" id="q17_5" value="5"
+                                                                    class="rating-input hidden">
+                                                                <label for="q17_5"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">5</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- q18 -->
+                                                    <div class="flex flex-col md:flex-row md:items-center gap-4 mb-2">
+                                                        <label class="text-gray-700 font-medium flex-1">8. Responsibility level given by the organization</label>
+                                                        <div class="flex gap-2">
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q18" id="q18_1" value="1"
+                                                                    class="rating-input hidden">
+                                                                <label for="q18_1"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">1</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q18" id="q18_2" value="2"
+                                                                    class="rating-input hidden">
+                                                                <label for="q18_2"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">2</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q18" id="q18_3" value="3"
+                                                                    class="rating-input hidden">
+                                                                <label for="q18_3"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">3</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q18" id="q18_4" value="4"
+                                                                    class="rating-input hidden">
+                                                                <label for="q18_4"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">4</label>
+                                                            </div>
+                                                            <div class="flex items-center">
+                                                                <input type="radio" name="q18" id="q18_5" value="5"
+                                                                    class="rating-input hidden">
+                                                                <label for="q18_5"
+                                                                    class="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 cursor-pointer hover:bg-blue-50 transition-colors">5</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <!-- Add more fields as needed -->
                                                 <div class="mb-4">
