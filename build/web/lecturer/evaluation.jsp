@@ -4,181 +4,172 @@
     Author     : Itqnazs
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Academic Supervisor Dashboard - Internship Management System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Industrial Supervisor Dashboard - Internship Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background-image: url('<c:url value="/assets/images/background.png"/>'); 
-            background-size: cover;     
-            background-repeat: no-repeat; 
-            background-attachment: fixed; 
-            background-position: center;  
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            
+            font-family: 'Inter', sans-serif;
         }
 
-        .dashboard-container {
-            flex: 1; 
-            margin-left: 100px;
-            margin-right: 100px;
-        }
-        .card {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            margin: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border: none;
-            overflow: hidden;
-            z-index: 1;
-        }
-        .card-task {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            margin: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border: 2px solid lightgrey;
-            overflow: hidden;
-            z-index: 1;
-            height: 280px;
-            
-        }
-        .card-outer{
-            background: none;
-            padding: 0px;
-            margin: 20px;
-            border: none;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            position: relative;
-        }
-        .cardforlogo{
-            background: none;
-            padding: 0px;
-            margin: 20px;
-            border: none;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
-            justify-content: center;
-        }
-        .cardforlogo img{
-            max-width: auto;
-            height: auto;
-        }
-        .inner {
-            padding: 20px;
-            margin: 0px;
-            border: none;
-            flex: 1;
-            min-width: 0px;
-            display: flex;
-            flex-direction: column;
-        }
-        .dropdown{
-            position: absolute;
-            right: 0;
-        }
-        .btn-secondary.dropdown-toggle {
-            background-color: #ffffff; 
-            color: #333; 
-            border-color: #5D8BFF; 
-        }
-        .btn-secondary.dropdown-toggle:hover {
-            background-color: #5D8BFF; 
-            color: white; 
-            border-color: #5D8BFF; 
-        }
-        .dropdown-item:hover {
-            background-color: #5D8BFF; 
+        .stepper-item.active .stepper-circle {
+            background-color: #3b82f6; /* Blue background for active step */
+            border-color: #3b82f6;
             color: white;
         }
 
+        .stepper-item.completed .stepper-circle {
+            background-color: #3b82f6; /* Blue background for completed steps */
+            border-color: #3b82f6;
+            color: white;
+        }
+
+        .stepper-item.active .stepper-label {
+            color: #3b82f6; /* Blue text for active step */
+        }
+
+        .stepper-item.completed .stepper-label {
+            color: #3b82f6; /* Blue text for completed steps */
+        }
     </style>
 </head>
-<body>
-    <c:set var="page" value="dashboard" scope="request"/>
-    <%@ include file="/WEB-INF/jspf/lecturer/header.jspf" %>
-    
-    <div class="dashboard-container">
-        
-        <!-------------  task Section ---------------->            
-        <div class="card" style="border-radius: 20px;">
-            <div class="card-outer">
-                <div class="inner" style="padding-top: 20px;">
-                    <div style="font-weight: 500; font-size: 25px;">Evaluation</div>
-                    <div>Forms</div>
-                </div>
-                
-            <form action="submitDropdownSelection.jsp" method="POST">
-                <div class="card-outer" style='padding-top: 20px;'>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="width: 250px; border-radius: 10px;">
-                            ${param.selectedStudent != null ? param.selectedStudent : 'Select Student'}
+<body class="bg-gray-50">
+    <c:set var="page" value="task" scope="request" />
+
+    <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <%@ include file="/WEB-INF/jspf/supervisor/sidebar.jspf" %>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <!-- Top bar -->
+            <%@ include file="/WEB-INF/jspf/supervisor/top.jspf" %>
+
+            <!-- Page Content -->
+            <div class="p-8">
+                <!-- Success Message -->
+                <c:if test="${not empty sessionScope.success}">
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                        <span class="block sm:inline">${sessionScope.success}</span>
+                        <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.remove()">
+                            <span class="text-green-700">&times;</span>
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="#" onclick="selectStudent('studentName1')">studentName1</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="selectStudent('studentName2')">studentName2</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="selectStudent('studentName3')">studentName3</a></li>
-                        </ul>
                     </div>
-                    <input type="hidden" name="selectedStudent" id="selectedStudentInput">
-                    <a href="#" type="submit" class="btn btn-primary" style='width: 100px; background-color: #5D8BFF;'>Search</a>
-                </div>
-            </form>
+                    <% session.removeAttribute("success"); %>
+                </c:if>
 
-            <script>
-                function selectStudent(name) {
-                    document.getElementById('dropdownMenuButton').textContent = name;
-                    document.getElementById('selectedStudentInput').value = name;
-                }
-            </script>
-
-            </div>
-            
-            <div class="card-task" >
-                <div class="cardforlogo" >
-                    <img src="<c:url value='/assets/images/thumbnail1.png'/>" alt="thumbnail" style="border-radius: 20px; width: 200px; height: 200px">
-                    <div class="inner" style="padding-top: 20px; ">
-                        <div style="font-weight: 500; font-size: 30px;">BLI 06</div>
-                        <div>Industrial training visit evaluation form</div>
-                        <a href="BLI06-1.jsp" class="btn btn-primary" style='width: 200px; margin-top: 10px; background-color: #5D8BFF;'>Open</a>
+                <!-- Error Message -->
+                <c:if test="${not empty sessionScope.error}">
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                        <span class="block sm:inline">${sessionScope.error}</span>
+                        <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.remove()">
+                            <span class="text-red-700">&times;</span>
+                        </button>
                     </div>
-                </div>
-            </div>
-            <div class="card-task" >
-                <div class="cardforlogo" >
-                    <img src="<c:url value='/assets/images/thumbnail1.png'/>" alt="thumbnail" style="border-radius: 20px; width: 200px; height: 200px">
-                    <div class="inner" style="padding-top: 20px; ">
-                        <div style="font-weight: 500; font-size: 30px;">BLI 08</div>
-                        <div>Academic supervisor evaluation form</div>
-                        <a href="bli08-1.jsp" class="btn btn-primary" style='width: 200px; margin-top: 10px; background-color: #5D8BFF;'>Open</a>
+                    <% session.removeAttribute("error"); %>
+                </c:if>
+
+                <!-- Task Section -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-900">Supervisor Tasks</h2>
+                            <p class="text-gray-600">Forms</p>
+                        </div>
+                        <form method="GET" action="TaskServlet" class="flex items-center gap-4">
+                            <div class="relative">
+                                <button type="button" class="bg-white border border-blue-500 text-gray-700 px-4 py-2 rounded-md flex items-center" id="dropdownMenuButton">
+                                    ${param.studentName != null ? param.studentName : 'Select Student'}
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                                <ul class="absolute hidden bg-white border border-gray-200 rounded-md shadow-lg mt-1 w-full z-10" id="dropdownMenu">
+                                    <c:forEach var="student" items="${studentList}">
+                                        <li>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" onclick="selectStudent('${student.studentName}')">
+                                                ${student.studentName}
+                                            </a>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                            <input type="hidden" name="studentName" id="selectedStudentInput" value="${param.studentName}">
+                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Search</button>
+                        </form>
+                    </div>
+
+                    <!-- Task Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                            <div class="flex items-center gap-4">
+                                <img src="<c:url value='/assets/images/thumbnail1.png'/>" alt="thumbnail" class="w-20 h-20 rounded-lg object-cover">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900">BLI 06</h3>
+                                    <p class="text-sm text-gray-600">Industrial training visit evaluation form</p>
+                                    <a href="BLI06.jsp" class="mt-2 inline-block w-full bg-blue-500 text-white px-4 py-2 rounded-md text-center">Open</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                            <div class="flex items-center gap-4">
+                                <img src="<c:url value='/assets/images/thumbnail1.png'/>" alt="thumbnail" class="w-20 h-20 rounded-lg object-cover">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900">BLI 08</h3>
+                                    <p class="text-sm text-gray-600">Academic supervisor evaluation form</p>
+                                    <a href="BLI08.jsp" class="mt-2 inline-block w-full bg-blue-500 text-white px-4 py-2 rounded-md text-center">Open</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <%@ include file="/WEB-INF/jspf/lecturer/footer.jspf" %>
-</body>
+    <script>
+        // Function to handle student selection from dropdown
+        function selectStudent(name) {
+            document.getElementById('dropdownMenuButton').textContent = name;
+            document.getElementById('selectedStudentInput').value = name;
+            // Submit the form when a student is selected
+            document.forms[0].submit();
+        }
 
+        // Toggle dropdown menu
+        document.getElementById('dropdownMenuButton').addEventListener('click', function() {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            const dropdownButton = document.getElementById('dropdownMenuButton');
+            if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+
+        // Run when page loads
+        window.onload = function() {
+            // Get selected student from parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedStudent = urlParams.get('studentName');
+
+            if (selectedStudent) {
+                // Update dropdown text
+                document.getElementById('dropdownMenuButton').textContent = selectedStudent;
+                // Update hidden input
+                document.getElementById('selectedStudentInput').value = selectedStudent;
+            }
+        }
+    </script>
+</body>
 </html>

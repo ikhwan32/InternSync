@@ -1,10 +1,3 @@
-<%-- 
-    Document   : dashboard
-    Created on : Dec 13, 2024, 3:31:26 PM
-    Author     : Asyrfl
---%>
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -13,132 +6,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academic Supervisor Dashboard - Internship Management System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background-image: url('<c:url value="/assets/images/background.png"/>'); 
-            background-size: cover;     
-            background-repeat: no-repeat; 
-            background-attachment: fixed; 
-            background-position: center;  
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            
+            font-family: 'Inter', sans-serif;
         }
-        .card {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            margin: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border: none;
-            overflow: hidden;
-            z-index: 1;
+
+        .stepper-item.active .stepper-circle {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
         }
-        .header {
-            background-color: #fff;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+        .stepper-item.completed .stepper-circle {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
         }
-        .header .title {
-            font-size: 20px;
-            font-weight: bold;
+
+        .stepper-item.active .stepper-label {
+            color: #3b82f6;
         }
-        .header .menu {
-            display: flex;
-            gap: 20px;
+
+        .stepper-item.completed .stepper-label {
+            color: #3b82f6;
         }
-        .menu a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 600;
+
+        .rating-input:checked+label {
+            background-color: #3b82f6;
+            color: white;
         }
-        .menu a:hover {
-            color: #007bff;
-        }
-        .content {
-            padding: 20px;
-        }
-        .important {
-            background-color: #fdfdfd;
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-        .student-status {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-        .phase {
-            background: #fff;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-        }
-        .phase .progress {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto;
-            background: white;
-            border: 8px solid #007bff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            color: black;
-            position: relative;
-        }
-        .card-inner{
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            margin: 0px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border: none;
-            flex: 1;
-            min-width: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .announcement-section {
-            background-color: #F8F9FA;
-            padding: 20px;
-            border-radius: 8px;
-            height: 100%;
-        }
-        .announcement-title {
-            text-align: center;
-            font-size: 20px;
-            font-weight: 500;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        .announcement-text {
-            font-size: 14px;
-            color: #666;
-        }
-        .dashboard-container {
-            flex: 1; 
-            margin-left: 100px;
-            margin-right: 100px;
-        }
-        .status{
+
+        .status {
             width: 160px;
             height: 160px;
             position: relative;
         }
-        .outer1{
+
+        .outer1 {
             height: 160px;
             width: 160px;
             border-radius: 50%;
@@ -146,7 +52,8 @@
             box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
                         -6px -6px 10px -1px rgba(755, 755, 755, 0.7);
         }
-        .inner1{
+
+        .inner1 {
             height: 120px;
             width: 120px;
             border-radius: 50%;
@@ -158,12 +65,13 @@
                         -0.5px -0.5px 0px rgba(255, 255, 255, 1),
                         0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
                         0px 12px 10px -10px rgba(0, 0, 0, 0.05);
-            
         }
-        #number1, #number2, #number3, #number4{
+
+        #number1, #number2, #number3, #number4 {
             font-weight: 600;
             color: #555;
         }
+
         circle {
             fill: none;
             stroke-width: 20px;
@@ -172,41 +80,47 @@
             animation: anim 2s linear forwards;
         }
 
-        svg{
+        svg {
             position: absolute;
             top: 0;
             left: 0;
-            
         }
 
-        .card-outer{
+        .card-outer {
             display: flex;
-            justify-content: center;  
-            align-items: center;      
-            gap: 80px;                
-            flex-wrap: wrap;          
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+            flex-wrap: wrap;
             padding: 20px;
-        }        
+        }
     </style>
 </head>
-<body>
-    <c:set var="page" value="dashboard" scope="request"/>
-    <%@ include file="/WEB-INF/jspf/lecturer/header.jspf" %>
+<body class="bg-gray-50">
+    <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <c:set var="page" value="dashboard" scope="request" />
+        <%@ include file="/WEB-INF/jspf/supervisor/sidebar.jspf" %>
 
-    <div class="dashboard-container">
-        <div class="">
-            <!------------- Announcement Section ---------------->
-            <div class="card" style="border-radius: 20px;">
-                <div class="announcement-section">
-                    <h3 class="announcement-title">Announcement</h3>
-                    <div class="announcement-text" style="text-align: center;">
-                        IMMPORTANT: Please alert about incoming due date!.
+        <!-- Main Content -->
+        <div class="flex-1">
+            <!-- Top bar -->
+            <c:set var="page" value="dashboard" scope="request" />
+            <%@ include file="/WEB-INF/jspf/supervisor/top.jspf" %>
+
+            <!-- Page Content -->
+            <div class="p-8">
+                <!-- Announcement Section -->
+                <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+                    <h3 class="text-xl font-bold mb-4">Announcement</h3>
+                    <div class="text-gray-700 text-center">
+                        IMPORTANT: Please alert about incoming due date!
                     </div>
                 </div>
-            </div>
-            <!------------- student status Section ---------------->
-            <div class="card" style="border-radius: 20px;">
-                <div style="text-align: center; color: #212529; font-size: 20px; font-weight: 500">Student Status</div>
+
+                <!-- Student Status Section -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="text-xl font-bold mb-4">Student Status</h3>
                     <div class="card-outer">
                         <!-- Phase 1 Progress -->
                         <div class="status">
@@ -224,7 +138,7 @@
                                 </defs>
                                 <circle cx="80" cy="80" r="70" stroke-linecap="round" style="stroke: url(#GradientColor1);"></circle>
                             </svg>
-                            <div style="text-align: center;">Phase 1</div>
+                            <div class="text-center mt-2">Phase 1</div>
                         </div>
 
                         <!-- Phase 2 Progress -->
@@ -243,8 +157,9 @@
                                 </defs>
                                 <circle cx="80" cy="80" r="70" stroke-linecap="round" style="stroke: url(#GradientColor2);"></circle>
                             </svg>
-                            <div style="text-align: center;">Phase 2</div>
+                            <div class="text-center mt-2">Phase 2</div>
                         </div>
+
                         <!-- Phase 3 Progress -->
                         <div class="status">
                             <div class="outer1">
@@ -261,8 +176,9 @@
                                 </defs>
                                 <circle cx="80" cy="80" r="70" stroke-linecap="round" style="stroke: url(#GradientColor3);"></circle>
                             </svg>
-                            <div style="text-align: center;">Phase 3</div>
+                            <div class="text-center mt-2">Phase 3</div>
                         </div>
+
                         <!-- Phase 4 Progress -->
                         <div class="status">
                             <div class="outer1">
@@ -279,55 +195,44 @@
                                 </defs>
                                 <circle cx="80" cy="80" r="70" stroke-linecap="round" style="stroke: url(#GradientColor4);"></circle>
                             </svg>
-                            <div style="text-align: center;">Phase 4</div>
-                        </div>                        
+                            <div class="text-center mt-2">Phase 4</div>
+                        </div>
                     </div>
-
-
+                </div>
             </div>
         </div>
-            
     </div>
 
-            <!------------- script for circle progress bar Section ---------------->
     <script>
-function animateProgress(numberId, targetPercentage, circleElement) {
-    const radius = 70; // Radius of the circle
-    const circumference = 2 * Math.PI * radius;
+        function animateProgress(numberId, targetPercentage, circleElement) {
+            const radius = 70;
+            const circumference = 2 * Math.PI * radius;
 
-    // Set the stroke-dasharray for the circle
-    circleElement.style.strokeDasharray = circumference;
-    circleElement.style.strokeDashoffset = circumference;
+            circleElement.style.strokeDasharray = circumference;
+            circleElement.style.strokeDashoffset = circumference;
 
-    let numberElement = document.getElementById(numberId);
-    let counter = 0;
+            let numberElement = document.getElementById(numberId);
+            let counter = 0;
 
-    // Animate the counter
-    let interval = setInterval(() => {
-        if (counter >= targetPercentage) {
-            clearInterval(interval);
-        } else {
-            counter += 1;
-            numberElement.innerHTML = counter + "%";
+            let interval = setInterval(() => {
+                if (counter >= targetPercentage) {
+                    clearInterval(interval);
+                } else {
+                    counter += 1;
+                    numberElement.innerHTML = counter + "%";
+                }
+            }, 30);
+
+            setTimeout(() => {
+                circleElement.style.transition = "stroke-dashoffset 2s ease";
+                circleElement.style.strokeDashoffset = circumference * (1 - targetPercentage / 100);
+            }, 100);
         }
-    }, 30);
 
-    // Add a delay to ensure the transition applies
-    setTimeout(() => {
-        circleElement.style.transition = "stroke-dashoffset 2s ease";
-        circleElement.style.strokeDashoffset = circumference * (1 - targetPercentage / 100);
-    }, 100);
-}
-
-// Call the function for each progress bar
-animateProgress("number1", 50, document.querySelector('#number1').closest('.status').querySelector('circle'));
-animateProgress("number2", 75, document.querySelector('#number2').closest('.status').querySelector('circle'));
-animateProgress("number3", 15, document.querySelector('#number3').closest('.status').querySelector('circle'));
-animateProgress("number4", 30, document.querySelector('#number4').closest('.status').querySelector('circle'));
-
+        animateProgress("number1", 50, document.querySelector('#number1').closest('.status').querySelector('circle'));
+        animateProgress("number2", 75, document.querySelector('#number2').closest('.status').querySelector('circle'));
+        animateProgress("number3", 15, document.querySelector('#number3').closest('.status').querySelector('circle'));
+        animateProgress("number4", 30, document.querySelector('#number4').closest('.status').querySelector('circle'));
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <%@ include file="/WEB-INF/jspf/lecturer/footer.jspf" %>
 </body>
 </html>
-
