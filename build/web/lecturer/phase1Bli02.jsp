@@ -61,17 +61,17 @@
                     <div class="bg-white rounded-xl shadow-sm p-6 text-center">
                         <img src="<c:url value='/assets/images/icon1.png'/>" alt="Total Students" class="w-12 h-12 mx-auto mb-2">
                         <h2 class="text-lg font-semibold text-gray-900">Total Students</h2>
-                        <p class="text-2xl font-bold text-blue-500">${totalStudents}</p>
+                        <p class="text-2xl font-bold text-blue-500">${totalStudent}</p>
                     </div>
                     <div class="bg-white rounded-xl shadow-sm p-6 text-center">
                         <img src="<c:url value='/assets/images/completed.png'/>" alt="Completed" class="w-12 h-12 mx-auto mb-2">
                         <h2 class="text-lg font-semibold text-gray-900">Completed</h2>
-                        <p class="text-2xl font-bold text-green-500">${totalCompleted}</p>
+                        <p class="text-2xl font-bold text-green-500">${totalComplete}</p>
                     </div>
                     <div class="bg-white rounded-xl shadow-sm p-6 text-center">
                         <img src="<c:url value='/assets/images/uncompleted.png'/>" alt="Uncompleted" class="w-12 h-12 mx-auto mb-2">
                         <h2 class="text-lg font-semibold text-gray-900">Uncompleted</h2>
-                        <p class="text-2xl font-bold text-red-500">${totalUncompleted}</p>
+                        <p class="text-2xl font-bold text-red-500">${totalUncomplete}</p>
                     </div>
                 </div>
 
@@ -80,7 +80,7 @@
                     <div class="flex justify-between items-center mb-6">
                         <div>
                             <h2 class="text-xl font-bold text-gray-900">PHASE 1</h2>
-                            <p class="text-sm text-gray-600">BLI 01</p>
+                            <p class="text-sm text-gray-600">BLI 02</p>
                         </div>
                         <div class="relative">
                             <button class="bg-white border border-blue-500 text-gray-700 px-4 py-2 rounded-md flex items-center" id="sortDropdown">
@@ -114,18 +114,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach var="bli01" items="${bliList}">
+                                <c:forEach var="bli02" items="${bliList1}">
                                     <tr>
-                                        <td class="px-4 py-2 border-b">${bli01.name}</td>
-                                        <td class="px-4 py-2 border-b">${bli01.compNameFirst}</td>
-                                        <td class="px-4 py-2 border-b">${bli01.phoneNum}</td>
-                                        <td class="px-4 py-2 border-b">${bli01.uitmEmail}</td>
+                                        <td class="px-4 py-2 border-b">${bli02.name}</td>
+                                        <td class="px-4 py-2 border-b">${bli02.compName}</td>
+                                        <td class="px-4 py-2 border-b">${bli02.compPhone}</td>
+                                        <td class="px-4 py-2 border-b">${bli02.compEmail}</td>
                                         <td class="px-4 py-2 border-b">
                                             <button class="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600 transition-colors">Reopen</button>
                                         </td>
                                         <td class="px-4 py-2 border-b">
-                                            <span class="${bli01.status == 'Completed' ? 'text-green-500' : 'text-red-500'} font-semibold">
-                                                ${bli01.status}
+                                            <span class="${bli02.status == 'Completed' ? 'text-green-500' : 'text-red-500'} font-semibold">
+                                                ${bli02.status}
                                             </span>
                                         </td>
                                     </tr>
@@ -136,7 +136,7 @@
 
                     <!-- Pagination Info -->
                     <div class="mt-4 text-sm text-gray-600">
-                        Showing data 1 to ${bliList.size()} of ${bliList.size()} entries
+                        Showing data 1 to ${bliList1.size()} of ${bliList1.size()} entries
                     </div>
                 </div>
             </div>

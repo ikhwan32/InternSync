@@ -13,11 +13,13 @@ public final class evaluation_jsp extends org.apache.jasper.runtime.HttpJspBase
 
   static {
     _jspx_dependants = new java.util.ArrayList<String>(2);
-    _jspx_dependants.add("/WEB-INF/jspf/supervisor/sidebar.jspf");
-    _jspx_dependants.add("/WEB-INF/jspf/supervisor/top.jspf");
+    _jspx_dependants.add("/WEB-INF/jspf/lecturer/sidebar.jspf");
+    _jspx_dependants.add("/WEB-INF/jspf/lecturer/top.jspf");
   }
 
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_forEach_var_items;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_set_var_value_scope_nobody;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_if_test;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_url_value_nobody;
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
@@ -27,12 +29,16 @@ public final class evaluation_jsp extends org.apache.jasper.runtime.HttpJspBase
   }
 
   public void _jspInit() {
+    _jspx_tagPool_c_forEach_var_items = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_c_set_var_value_scope_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_c_if_test = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_c_url_value_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
   }
 
   public void _jspDestroy() {
+    _jspx_tagPool_c_forEach_var_items.release();
     _jspx_tagPool_c_set_var_value_scope_nobody.release();
+    _jspx_tagPool_c_if_test.release();
     _jspx_tagPool_c_url_value_nobody.release();
   }
 
@@ -68,7 +74,7 @@ public final class evaluation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\r\n");
       out.write("<head>\r\n");
       out.write("    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("    <title>Academic Supervisor Dashboard - Internship Management System</title>\r\n");
+      out.write("    <title>Industrial Supervisor Dashboard - Internship Management System</title>\r\n");
       out.write("    <script src=\"https://cdn.tailwindcss.com\"></script>\r\n");
       out.write("    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap\" rel=\"stylesheet\">\r\n");
       out.write("    <style>\r\n");
@@ -77,90 +83,34 @@ public final class evaluation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        }\r\n");
       out.write("\r\n");
       out.write("        .stepper-item.active .stepper-circle {\r\n");
-      out.write("            background-color: #3b82f6;\r\n");
+      out.write("            background-color: #3b82f6; /* Blue background for active step */\r\n");
       out.write("            border-color: #3b82f6;\r\n");
       out.write("            color: white;\r\n");
       out.write("        }\r\n");
       out.write("\r\n");
       out.write("        .stepper-item.completed .stepper-circle {\r\n");
-      out.write("            background-color: #3b82f6;\r\n");
+      out.write("            background-color: #3b82f6; /* Blue background for completed steps */\r\n");
       out.write("            border-color: #3b82f6;\r\n");
       out.write("            color: white;\r\n");
       out.write("        }\r\n");
       out.write("\r\n");
       out.write("        .stepper-item.active .stepper-label {\r\n");
-      out.write("            color: #3b82f6;\r\n");
+      out.write("            color: #3b82f6; /* Blue text for active step */\r\n");
       out.write("        }\r\n");
       out.write("\r\n");
       out.write("        .stepper-item.completed .stepper-label {\r\n");
-      out.write("            color: #3b82f6;\r\n");
-      out.write("        }\r\n");
-      out.write("\r\n");
-      out.write("        .rating-input:checked+label {\r\n");
-      out.write("            background-color: #3b82f6;\r\n");
-      out.write("            color: white;\r\n");
-      out.write("        }\r\n");
-      out.write("\r\n");
-      out.write("        .card-task {\r\n");
-      out.write("            background: white;\r\n");
-      out.write("            border-radius: 10px;\r\n");
-      out.write("            padding: 25px;\r\n");
-      out.write("            margin: 20px;\r\n");
-      out.write("            box-shadow: 0 1px 3px rgba(0,0,0,0.1);\r\n");
-      out.write("            border: 2px solid lightgrey;\r\n");
-      out.write("            overflow: hidden;\r\n");
-      out.write("            z-index: 1;\r\n");
-      out.write("            height: 280px;\r\n");
-      out.write("        }\r\n");
-      out.write("\r\n");
-      out.write("        .cardforlogo {\r\n");
-      out.write("            background: none;\r\n");
-      out.write("            padding: 0px;\r\n");
-      out.write("            margin: 20px;\r\n");
-      out.write("            border: none;\r\n");
-      out.write("            display: flex;\r\n");
-      out.write("            gap: 20px;\r\n");
-      out.write("            flex-wrap: wrap;\r\n");
-      out.write("            gap: 10px;\r\n");
-      out.write("            align-items: center;\r\n");
-      out.write("            justify-content: center;\r\n");
-      out.write("        }\r\n");
-      out.write("\r\n");
-      out.write("        .cardforlogo img {\r\n");
-      out.write("            max-width: auto;\r\n");
-      out.write("            height: auto;\r\n");
-      out.write("        }\r\n");
-      out.write("\r\n");
-      out.write("        .dropdown {\r\n");
-      out.write("            position: absolute;\r\n");
-      out.write("            right: 0;\r\n");
-      out.write("        }\r\n");
-      out.write("\r\n");
-      out.write("        .btn-secondary.dropdown-toggle {\r\n");
-      out.write("            background-color: #ffffff;\r\n");
-      out.write("            color: #333;\r\n");
-      out.write("            border-color: #5D8BFF;\r\n");
-      out.write("        }\r\n");
-      out.write("\r\n");
-      out.write("        .btn-secondary.dropdown-toggle:hover {\r\n");
-      out.write("            background-color: #5D8BFF;\r\n");
-      out.write("            color: white;\r\n");
-      out.write("            border-color: #5D8BFF;\r\n");
-      out.write("        }\r\n");
-      out.write("\r\n");
-      out.write("        .dropdown-item:hover {\r\n");
-      out.write("            background-color: #5D8BFF;\r\n");
-      out.write("            color: white;\r\n");
+      out.write("            color: #3b82f6; /* Blue text for completed steps */\r\n");
       out.write("        }\r\n");
       out.write("    </style>\r\n");
       out.write("</head>\r\n");
       out.write("<body class=\"bg-gray-50\">\r\n");
-      out.write("    <div class=\"min-h-screen flex\">\r\n");
-      out.write("        <!-- Sidebar -->\r\n");
-      out.write("        ");
+      out.write("    ");
       if (_jspx_meth_c_set_0(_jspx_page_context))
         return;
       out.write("\r\n");
+      out.write("\r\n");
+      out.write("    <div class=\"min-h-screen flex\">\r\n");
+      out.write("        <!-- Sidebar -->\r\n");
       out.write("        ");
       out.write("<div class=\"w-64 bg-white shadow-sm border-r\">\r\n");
       out.write("    <!-- Logo -->\r\n");
@@ -176,7 +126,7 @@ public final class evaluation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </div>\r\n");
       out.write("            <div>\r\n");
       out.write("                <div class=\"text-sm font-medium text-gray-900\">Muhammad</div>\r\n");
-      out.write("                <div class=\"text-xs text-gray-500\">Supervisor</div>\r\n");
+      out.write("                <div class=\"text-xs text-gray-500\">Lecturer</div>\r\n");
       out.write("            </div>\r\n");
       out.write("        </div>\r\n");
       out.write("    </div>\r\n");
@@ -199,7 +149,7 @@ public final class evaluation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </a>\r\n");
       out.write("\r\n");
       out.write("            <!-- BLI Forms Link -->\r\n");
-      out.write("            <a href=\"task.jsp\"\r\n");
+      out.write("            <a href=\"evaluation.jsp\"\r\n");
       out.write("                class=\"flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md \r\n");
       out.write("                       ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${page == 'task' ? 'text-white bg-indigo-600' : 'text-gray-600 hover:bg-gray-50'}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -236,14 +186,10 @@ public final class evaluation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div class=\"flex-1\">\r\n");
       out.write("            <!-- Top bar -->\r\n");
       out.write("            ");
-      if (_jspx_meth_c_set_1(_jspx_page_context))
-        return;
-      out.write("\r\n");
-      out.write("            ");
       out.write("<div class=\"h-16 bg-white shadow-sm border-b flex items-center justify-between px-8\">\r\n");
       out.write("    <!-- Page Title -->\r\n");
       out.write("    ");
-      if (_jspx_meth_c_set_2(_jspx_page_context))
+      if (_jspx_meth_c_set_1(_jspx_page_context))
         return;
       out.write("\r\n");
       out.write("\r\n");
@@ -275,59 +221,133 @@ public final class evaluation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("            <!-- Page Content -->\r\n");
       out.write("            <div class=\"p-8\">\r\n");
-      out.write("                <!-- Evaluation Section -->\r\n");
+      out.write("                <!-- Success Message -->\r\n");
+      out.write("                ");
+      //  c:if
+      org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_0 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
+      _jspx_th_c_if_0.setPageContext(_jspx_page_context);
+      _jspx_th_c_if_0.setParent(null);
+      _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${not empty sessionScope.success}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+      int _jspx_eval_c_if_0 = _jspx_th_c_if_0.doStartTag();
+      if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+        do {
+          out.write("\r\n");
+          out.write("                    <div class=\"bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4\" role=\"alert\">\r\n");
+          out.write("                        <span class=\"block sm:inline\">");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.success}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</span>\r\n");
+          out.write("                        <button type=\"button\" class=\"absolute top-0 bottom-0 right-0 px-4 py-3\" onclick=\"this.parentElement.remove()\">\r\n");
+          out.write("                            <span class=\"text-green-700\">&times;</span>\r\n");
+          out.write("                        </button>\r\n");
+          out.write("                    </div>\r\n");
+          out.write("                    ");
+ session.removeAttribute("success"); 
+          out.write("\r\n");
+          out.write("                ");
+          int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
+          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+            break;
+        } while (true);
+      }
+      if (_jspx_th_c_if_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_0);
+        return;
+      }
+      _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_0);
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                <!-- Error Message -->\r\n");
+      out.write("                ");
+      //  c:if
+      org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_1 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
+      _jspx_th_c_if_1.setPageContext(_jspx_page_context);
+      _jspx_th_c_if_1.setParent(null);
+      _jspx_th_c_if_1.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${not empty sessionScope.error}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+      int _jspx_eval_c_if_1 = _jspx_th_c_if_1.doStartTag();
+      if (_jspx_eval_c_if_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+        do {
+          out.write("\r\n");
+          out.write("                    <div class=\"bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4\" role=\"alert\">\r\n");
+          out.write("                        <span class=\"block sm:inline\">");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.error}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</span>\r\n");
+          out.write("                        <button type=\"button\" class=\"absolute top-0 bottom-0 right-0 px-4 py-3\" onclick=\"this.parentElement.remove()\">\r\n");
+          out.write("                            <span class=\"text-red-700\">&times;</span>\r\n");
+          out.write("                        </button>\r\n");
+          out.write("                    </div>\r\n");
+          out.write("                    ");
+ session.removeAttribute("error"); 
+          out.write("\r\n");
+          out.write("                ");
+          int evalDoAfterBody = _jspx_th_c_if_1.doAfterBody();
+          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+            break;
+        } while (true);
+      }
+      if (_jspx_th_c_if_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_1);
+        return;
+      }
+      _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_1);
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                <!-- Task Section -->\r\n");
       out.write("                <div class=\"bg-white rounded-xl shadow-sm p-6\">\r\n");
-      out.write("                    <div class=\"flex justify-between items-center mb-4\">\r\n");
+      out.write("                    <div class=\"flex justify-between items-center mb-6\">\r\n");
       out.write("                        <div>\r\n");
-      out.write("                            <h3 class=\"text-xl font-bold\">Evaluation</h3>\r\n");
+      out.write("                            <h2 class=\"text-xl font-bold text-gray-900\">Supervisor Tasks</h2>\r\n");
       out.write("                            <p class=\"text-gray-600\">Forms</p>\r\n");
       out.write("                        </div>\r\n");
-      out.write("                        <form action=\"submitDropdownSelection.jsp\" method=\"POST\">\r\n");
-      out.write("                            <div class=\"flex gap-4\">\r\n");
-      out.write("                                <div class=\"dropdown\">\r\n");
-      out.write("                                    <button class=\"btn btn-secondary dropdown-toggle\" type=\"button\" id=\"dropdownMenuButton\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\" style=\"width: 250px; border-radius: 10px;\">\r\n");
-      out.write("                                        ");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.selectedStudent != null ? param.selectedStudent : 'Select Student'}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("                        <form method=\"GET\" action=\"TaskServlet\" class=\"flex items-center gap-4\">\r\n");
+      out.write("                            <div class=\"relative\">\r\n");
+      out.write("                                <button type=\"button\" class=\"bg-white border border-blue-500 text-gray-700 px-4 py-2 rounded-md flex items-center\" id=\"dropdownMenuButton\">\r\n");
+      out.write("                                    ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.studentName != null ? param.studentName : 'Select Student'}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\r\n");
-      out.write("                                    </button>\r\n");
-      out.write("                                    <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n");
-      out.write("                                        <li><a class=\"dropdown-item\" href=\"#\" onclick=\"selectStudent('studentName1')\">studentName1</a></li>\r\n");
-      out.write("                                        <li><a class=\"dropdown-item\" href=\"#\" onclick=\"selectStudent('studentName2')\">studentName2</a></li>\r\n");
-      out.write("                                        <li><a class=\"dropdown-item\" href=\"#\" onclick=\"selectStudent('studentName3')\">studentName3</a></li>\r\n");
-      out.write("                                    </ul>\r\n");
-      out.write("                                </div>\r\n");
-      out.write("                                <input type=\"hidden\" name=\"selectedStudent\" id=\"selectedStudentInput\">\r\n");
-      out.write("                                <button type=\"submit\" class=\"bg-blue-500 text-white px-4 py-2 rounded\">Search</button>\r\n");
+      out.write("                                    <svg class=\"w-4 h-4 ml-2\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n");
+      out.write("                                        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 9l-7 7-7-7\"></path>\r\n");
+      out.write("                                    </svg>\r\n");
+      out.write("                                </button>\r\n");
+      out.write("                                <ul class=\"absolute hidden bg-white border border-gray-200 rounded-md shadow-lg mt-1 w-full z-10\" id=\"dropdownMenu\">\r\n");
+      out.write("                                    ");
+      if (_jspx_meth_c_forEach_0(_jspx_page_context))
+        return;
+      out.write("\r\n");
+      out.write("                                </ul>\r\n");
       out.write("                            </div>\r\n");
+      out.write("                            <input type=\"hidden\" name=\"studentName\" id=\"selectedStudentInput\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.studentName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\">\r\n");
+      out.write("                            <button type=\"submit\" class=\"bg-blue-500 text-white px-4 py-2 rounded-md\">Search</button>\r\n");
       out.write("                        </form>\r\n");
       out.write("                    </div>\r\n");
       out.write("\r\n");
-      out.write("                    <!-- BLI 06 Card -->\r\n");
-      out.write("                    <div class=\"card-task\">\r\n");
-      out.write("                        <div class=\"cardforlogo\">\r\n");
-      out.write("                            <img src=\"");
+      out.write("                    <!-- Task Cards -->\r\n");
+      out.write("                    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-6\">\r\n");
+      out.write("                        <div class=\"bg-white border border-gray-200 rounded-lg p-6 shadow-sm\">\r\n");
+      out.write("                            <div class=\"flex items-center gap-4\">\r\n");
+      out.write("                                <img src=\"");
       if (_jspx_meth_c_url_0(_jspx_page_context))
         return;
-      out.write("\" alt=\"thumbnail\" style=\"border-radius: 20px; width: 200px; height: 200px\">\r\n");
-      out.write("                            <div class=\"flex flex-col\">\r\n");
-      out.write("                                <h3 class=\"text-2xl font-bold\">BLI 06</h3>\r\n");
-      out.write("                                <p class=\"text-gray-600\">Industrial training visit evaluation form</p>\r\n");
-      out.write("                                <a href=\"BLI06-1.jsp\" class=\"bg-blue-500 text-white px-4 py-2 rounded mt-2 text-center\">Open</a>\r\n");
+      out.write("\" alt=\"thumbnail\" class=\"w-20 h-20 rounded-lg object-cover\">\r\n");
+      out.write("                                <div>\r\n");
+      out.write("                                    <h3 class=\"text-lg font-semibold text-gray-900\">BLI 06</h3>\r\n");
+      out.write("                                    <p class=\"text-sm text-gray-600\">Industrial training visit evaluation form</p>\r\n");
+      out.write("                                    <a href=\"BLI06.jsp\" class=\"mt-2 inline-block w-full bg-blue-500 text-white px-4 py-2 rounded-md text-center\">Open</a>\r\n");
+      out.write("                                </div>\r\n");
       out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("\r\n");
-      out.write("                    <!-- BLI 08 Card -->\r\n");
-      out.write("                    <div class=\"card-task\">\r\n");
-      out.write("                        <div class=\"cardforlogo\">\r\n");
-      out.write("                            <img src=\"");
+      out.write("                        <div class=\"bg-white border border-gray-200 rounded-lg p-6 shadow-sm\">\r\n");
+      out.write("                            <div class=\"flex items-center gap-4\">\r\n");
+      out.write("                                <img src=\"");
       if (_jspx_meth_c_url_1(_jspx_page_context))
         return;
-      out.write("\" alt=\"thumbnail\" style=\"border-radius: 20px; width: 200px; height: 200px\">\r\n");
-      out.write("                            <div class=\"flex flex-col\">\r\n");
-      out.write("                                <h3 class=\"text-2xl font-bold\">BLI 08</h3>\r\n");
-      out.write("                                <p class=\"text-gray-600\">Academic supervisor evaluation form</p>\r\n");
-      out.write("                                <a href=\"bli08-1.jsp\" class=\"bg-blue-500 text-white px-4 py-2 rounded mt-2 text-center\">Open</a>\r\n");
+      out.write("\" alt=\"thumbnail\" class=\"w-20 h-20 rounded-lg object-cover\">\r\n");
+      out.write("                                <div>\r\n");
+      out.write("                                    <h3 class=\"text-lg font-semibold text-gray-900\">BLI 08</h3>\r\n");
+      out.write("                                    <p class=\"text-sm text-gray-600\">Academic supervisor evaluation form</p>\r\n");
+      out.write("                                    <a href=\"BLI08.jsp\" class=\"mt-2 inline-block w-full bg-blue-500 text-white px-4 py-2 rounded-md text-center\">Open</a>\r\n");
+      out.write("                                </div>\r\n");
       out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
@@ -337,9 +357,41 @@ public final class evaluation_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    </div>\r\n");
       out.write("\r\n");
       out.write("    <script>\r\n");
+      out.write("        // Function to handle student selection from dropdown\r\n");
       out.write("        function selectStudent(name) {\r\n");
       out.write("            document.getElementById('dropdownMenuButton').textContent = name;\r\n");
       out.write("            document.getElementById('selectedStudentInput').value = name;\r\n");
+      out.write("            // Submit the form when a student is selected\r\n");
+      out.write("            document.forms[0].submit();\r\n");
+      out.write("        }\r\n");
+      out.write("\r\n");
+      out.write("        // Toggle dropdown menu\r\n");
+      out.write("        document.getElementById('dropdownMenuButton').addEventListener('click', function() {\r\n");
+      out.write("            const dropdownMenu = document.getElementById('dropdownMenu');\r\n");
+      out.write("            dropdownMenu.classList.toggle('hidden');\r\n");
+      out.write("        });\r\n");
+      out.write("\r\n");
+      out.write("        // Close dropdown when clicking outside\r\n");
+      out.write("        document.addEventListener('click', function(event) {\r\n");
+      out.write("            const dropdownMenu = document.getElementById('dropdownMenu');\r\n");
+      out.write("            const dropdownButton = document.getElementById('dropdownMenuButton');\r\n");
+      out.write("            if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {\r\n");
+      out.write("                dropdownMenu.classList.add('hidden');\r\n");
+      out.write("            }\r\n");
+      out.write("        });\r\n");
+      out.write("\r\n");
+      out.write("        // Run when page loads\r\n");
+      out.write("        window.onload = function() {\r\n");
+      out.write("            // Get selected student from parameter\r\n");
+      out.write("            const urlParams = new URLSearchParams(window.location.search);\r\n");
+      out.write("            const selectedStudent = urlParams.get('studentName');\r\n");
+      out.write("\r\n");
+      out.write("            if (selectedStudent) {\r\n");
+      out.write("                // Update dropdown text\r\n");
+      out.write("                document.getElementById('dropdownMenuButton').textContent = selectedStudent;\r\n");
+      out.write("                // Update hidden input\r\n");
+      out.write("                document.getElementById('selectedStudentInput').value = selectedStudent;\r\n");
+      out.write("            }\r\n");
       out.write("        }\r\n");
       out.write("    </script>\r\n");
       out.write("</body>\r\n");
@@ -385,8 +437,8 @@ public final class evaluation_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_1 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_scope_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
     _jspx_th_c_set_1.setPageContext(_jspx_page_context);
     _jspx_th_c_set_1.setParent(null);
-    _jspx_th_c_set_1.setVar("page");
-    _jspx_th_c_set_1.setValue(new String("evaluation"));
+    _jspx_th_c_set_1.setVar("pageNames");
+    _jspx_th_c_set_1.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${{\r\n    'dashboard': 'Dashboard',\r\n    'task': 'Task',\r\n    'bli02': 'BLI 02 : Organization Approval Response Form',\r\n    'bli05': 'BLI 05 : Student Evaluation',\r\n    'attendance': 'Attendance',\r\n    'reports': 'Reports',\r\n    'settings': 'Settings'\r\n}}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
     _jspx_th_c_set_1.setScope("request");
     int _jspx_eval_c_set_1 = _jspx_th_c_set_1.doStartTag();
     if (_jspx_th_c_set_1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
@@ -397,23 +449,48 @@ public final class evaluation_jsp extends org.apache.jasper.runtime.HttpJspBase
     return false;
   }
 
-  private boolean _jspx_meth_c_set_2(PageContext _jspx_page_context)
+  private boolean _jspx_meth_c_forEach_0(PageContext _jspx_page_context)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
-    //  c:set
-    org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_2 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_scope_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
-    _jspx_th_c_set_2.setPageContext(_jspx_page_context);
-    _jspx_th_c_set_2.setParent(null);
-    _jspx_th_c_set_2.setVar("pageNames");
-    _jspx_th_c_set_2.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${{\r\n    'dashboard': 'Dashboard',\r\n    'task': 'Task',\r\n    'bli02': 'BLI 02 : Organization Approval Response Form',\r\n    'bli05': 'BLI 05 : Student Evaluation',\r\n    'attendance': 'Attendance',\r\n    'reports': 'Reports',\r\n    'settings': 'Settings'\r\n}}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
-    _jspx_th_c_set_2.setScope("request");
-    int _jspx_eval_c_set_2 = _jspx_th_c_set_2.doStartTag();
-    if (_jspx_th_c_set_2.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_c_set_var_value_scope_nobody.reuse(_jspx_th_c_set_2);
-      return true;
+    //  c:forEach
+    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
+    _jspx_th_c_forEach_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_forEach_0.setParent(null);
+    _jspx_th_c_forEach_0.setVar("student");
+    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${studentList}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int[] _jspx_push_body_count_c_forEach_0 = new int[] { 0 };
+    try {
+      int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
+      if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+        do {
+          out.write("\r\n");
+          out.write("                                        <li>\r\n");
+          out.write("                                            <a href=\"#\" class=\"block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white\" onclick=\"selectStudent('");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${student.studentName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("')\">\r\n");
+          out.write("                                                ");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${student.studentName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\r\n");
+          out.write("                                            </a>\r\n");
+          out.write("                                        </li>\r\n");
+          out.write("                                    ");
+          int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
+          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+            break;
+        } while (true);
+      }
+      if (_jspx_th_c_forEach_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        return true;
+      }
+    } catch (Throwable _jspx_exception) {
+      while (_jspx_push_body_count_c_forEach_0[0]-- > 0)
+        out = _jspx_page_context.popBody();
+      _jspx_th_c_forEach_0.doCatch(_jspx_exception);
+    } finally {
+      _jspx_th_c_forEach_0.doFinally();
+      _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_0);
     }
-    _jspx_tagPool_c_set_var_value_scope_nobody.reuse(_jspx_th_c_set_2);
     return false;
   }
 

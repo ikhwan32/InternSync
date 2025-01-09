@@ -1,329 +1,183 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.internship.model.BLI01" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Academic Supervisor Dashboard - Internship Management System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-image: url('<c:url value="/assets/images/background.png"/>'); 
-            background-size: cover;     
-            background-repeat: no-repeat; 
-            background-attachment: fixed; 
-            background-position: center;  
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            
-        }
-
-        .dashboard-container {
-            flex: 1; 
-            margin-left: 100px;
-            margin-right: 100px;
-        }
-        .card {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border: none;
-            overflow: hidden;
-            z-index: 1;
-            margin-bottom:20px;
-        }
-        .card-outer{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center;
-        }
-        .card-inner{
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            margin: 30px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border: none;
-            flex: 1;
-            min-width: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .cardforlogo{
-            background: none;
-            padding: 0px;
-            margin: 20px;
-            border: none;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
-            justify-content: center;
-        }
-        .cardforlogo img{
-            max-width: 100px;
-            height: auto;
-        }
-        .inner1{
-            font-size: 20px;
-            font-weight: 500;
-        }
-        .inner2{
-            color: grey;
-            font-size: 16px;
-        }
-        .inner1 div {
-            font-size: 16px;
-            color: green;
-            margin-top: 2px;
-        }
-
-        .dropdown{
-            position: absolute;
-            right: 0;
-        }
-        .btn-secondary.dropdown-toggle {
-            background-color: #ffffff; 
-            color: #333; 
-            border-color: #5D8BFF; 
-        }
-        .btn-secondary.dropdown-toggle:hover {
-            background-color: #5D8BFF; 
-            color: white; 
-            border-color: #5D8BFF; 
-        }
-        .dropdown-item:hover {
-            background-color: #5D8BFF; 
-            color: white;
-        }
-            .filters {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .filters .left-section {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .filters .back-button {
-            padding: 10px 40px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: #fff;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .filters .back-button:hover {
-            background-color: #0056b3;
-        }
-
-        .filters .search {
-            display: flex;
-            gap: 10px;
-        }
-
-        .filters .search input,
-        .filters .search select {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .status-completed {
-            color: #28a745;
-            font-weight: bold;
-        }
-
-        .status-uncompleted {
-            color: #dc3545;
-            font-weight: bold;
-        }
-
-        .action button {
-            padding: 8px 15px; 
-            border: none;
-            border-radius: 10px;
-            cursor: pointer; 
-            width: 90px; 
-            text-align: center;
-        }
-
-        .action .reopen {
-            background: #007bff;
-            color: #fff;
-        }
-
-        .action .close {
-            background: #dc3545;
-            color: #fff;
-        }
-        .search {
-            border-radius: 10px;
-        }
-        .stats {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-            gap: 20px;
-        }
-
-        .stats .stat {
-            background: white;
-            padding: 15px 20px;
-            text-align: center;
-            border-radius: 10px;
-            flex: 1;
-        }
-
-        .stats .stat h2 {
-            color: #333;
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-
-        .stats .stat p {
-            color: #555;
-            font-size: 14px;
-        }
-        .stat{
-            border-radius: 20px;
-        }
-        
-
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Phase - Internship Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <c:set var="page" value="student" scope="request"/>
-    <%@ include file="/WEB-INF/jspf/lecturer/header.jspf" %>
-    
-    <div class="dashboard-container">
-        <div class="filters">
-            <div class="left-section">
-                <a href="studentTask.jsp" class="back-button" style="background-color: #5D8BFF;">Back</a>
-            </div>
-            <div class="search">
-                <select>
-                    <option value="">Select BLI</option>
-                    <option value="BLI 01">BLI 01</option>
-                    <option value="BLI 02">BLI 02</option>
-                    <!-- Add more courses as needed -->
-                </select>
-                <input type="text" placeholder="Search name...">
-            </div>
-        </div>
-            <!------------- ---------------->
-            <div class="stats">
-            <div class="stat" style="border-radius: 20px;">
-                <img src="<c:url value='/assets/images/icon1.png'/>">
-                <h2>Total Students</h2>
-                <p>123</p>
-            </div>
-            <div class="stat" style="border-radius: 20px;">
-                <img src="<c:url value='/assets/images/completed.png'/>">
-                <h2>Completed</h2>
-                <p>80</p>
-            </div>
-            <div class="stat" style="border-radius: 20px;">
-                <img src="<c:url value='/assets/images/uncompleted.png'/>">
-                <h2>Uncompleted</h2>
-                <p>43</p>
-            </div>
-        </div>
-        
-        
-                  
-            <div class="card" style="border-radius: 20px;" >
-            <div class="card-outer">
-                <div class="inner2">All Students</div>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<body class="bg-gray-50 min-h-screen flex">
+    <c:set var="page" value="phase4" scope="request" />
 
-            <!-- Center Section -->
-                <div class="inner1" style="margin-left: 68px;">
-                    PHASE 1
-                    <div>BLI 01</div>
+    <!-- Sidebar -->
+    <%@ include file="/WEB-INF/jspf/lecturer/sidebar.jspf" %>
+
+    <!-- Main Content -->
+    <div class="flex-1">
+        <!-- Top Bar -->
+        <%@ include file="/WEB-INF/jspf/lecturer/top.jspf" %>
+
+        <!-- Page Content -->
+        <div class="p-8">
+            <!-- Filters Section -->
+            <div class="flex justify-between items-center mb-6">
+                <div class="flex items-center gap-4">
+                    <a href="studentTask.jsp" class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition-colors">Back</a>
                 </div>
-                <div class="dropdown" style="padding-top: 20px;">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="width: 150px; border-radius: 10px;">
-                      Sort by :
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <li><a class="dropdown-item" href="#">Newest</a></li>
-                      <li><a class="dropdown-item" href="#">Oldest</a></li>
-                    </ul>
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <button class="bg-white border border-blue-500 text-gray-700 px-4 py-2 rounded-md flex items-center" id="dropdownMenuButton">
+                            ${param.selectedBLI != null ? param.selectedBLI : 'Select BLI'}
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <ul class="absolute hidden bg-white border border-gray-200 rounded-md shadow-lg mt-1 w-full z-10" id="dropdownMenu">
+                            <li>
+                                <a href="phase4.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" onclick="selectBLI('BLI06')">BLI06</a>
+                            </li>
+                            <li>
+                                <a href="phase4Bli08.jsp" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" onclick="selectBLI('BLI08')">BLI08</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <input type="text" placeholder="Search name..." class="p-2 border rounded-md">
                 </div>
             </div>
-            
-            <div class="table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th scope="col">Student Name</th>
-                      <th scope="col">Company</th>
-                      <th scope="col">Phone number</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Action</th>
-                      <th scope="col">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                      <td>Student Name</td>
-                      <td>Yahoo</td>
-                      <td>012 345 6789</td>
-                      <td>name@gmail.com</td>
-                      <td class="action"><button class="reopen" style="background-color: #5D8BFF;">View</button></td>
-                      <td class="status-completed" style="color: #28a745; font-weight: bold;">Completed</td>
-                    </tr>
-                      <tr>
-                      <td>Student Name</td>
-                      <td>Yahoo</td>
-                      <td>012 345 6789</td>
-                      <td>name@gmail.com</td>
-                      <td class="action"><button class="close" style="background-color: #5D8BFF;">View</button></td>
-                      <td class="status-uncompleted" style="color: #dc3545; font-weight: bold;">Uncompleted</td>
-                    </tr>
-                      <tr>
-                      <td>Student Name</td>
-                      <td>Yahoo</td>
-                      <td>012 345 6789</td>
-                      <td>name@gmail.com</td>
-                      <td class="action"><button class="reopen" style="background-color: #5D8BFF;">View</button></td>
-                      <td class="status-uncompleted" style="color: #dc3545; font-weight: bold;">Uncompleted</td>
-                    </tr>
-                      <tr>
-                      <td>Student Name</td>
-                      <td>Yahoo</td>
-                      <td>012 345 6789</td>
-                      <td>name@gmail.com</td>
-                      <td class="action"><button class="reopen" style="background-color: #5D8BFF;">View</button></td>
-                      <td class="status-uncompleted" style="color: #dc3545; font-weight: bold;">Uncompleted</td>
-                    </tr>
-                  </tbody>
-                </table>
-            </div>
-<span style="color: grey;">Showing data 1 to 4 of 4 entries</span>
 
+            <!-- Stats Section -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div class="bg-white rounded-xl shadow-sm p-6 text-center">
+                    <img src="<c:url value='/assets/images/icon1.png'/>" alt="Total Students" class="w-12 h-12 mx-auto mb-2">
+                    <h2 class="text-lg font-semibold text-gray-900">Total Students</h2>
+                    <p class="text-2xl font-bold text-blue-500">${totalStudents5}</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm p-6 text-center">
+                    <img src="<c:url value='/assets/images/completed.png'/>" alt="Completed" class="w-12 h-12 mx-auto mb-2">
+                    <h2 class="text-lg font-semibold text-gray-900">Completed</h2>
+                    <p class="text-2xl font-bold text-green-500">${totalCompleted5}</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm p-6 text-center">
+                    <img src="<c:url value='/assets/images/uncompleted.png'/>" alt="Uncompleted" class="w-12 h-12 mx-auto mb-2">
+                    <h2 class="text-lg font-semibold text-gray-900">Uncompleted</h2>
+                    <p class="text-2xl font-bold text-red-500">${totalUncompleted5}</p>
+                </div>
+            </div>
+
+            <!-- Internship List Section -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900">PHASE 4</h2>
+                        <p class="text-sm text-gray-600">BLI 06</p>
+                    </div>
+                    <div class="relative">
+                        <button class="bg-white border border-blue-500 text-gray-700 px-4 py-2 rounded-md flex items-center" id="sortDropdown">
+                            Sort by :
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <ul class="absolute hidden bg-white border border-gray-200 rounded-md shadow-lg mt-1 w-full z-10" id="sortMenu">
+                            <li>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">Completed</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">Uncompleted</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-200">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-2 border-b">Student Name</th>
+                                <th class="px-4 py-2 border-b">Student ID</th>
+                                <th class="px-4 py-2 border-b">Course</th>
+                                <th class="px-4 py-2 border-b">Phone Number</th>
+                                <th class="px-4 py-2 border-b">Action</th>
+                                <th class="px-4 py-2 border-b">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="bli06" items="${phase4}">
+                                <tr>
+                                    <td class="px-4 py-2 border-b">${bli06.name}</td>
+                                    <td class="px-4 py-2 border-b">${bli06.matricNum}</td>
+                                    <td class="px-4 py-2 border-b">${bli06.programme}</td>
+                                    <td class="px-4 py-2 border-b">${bli06.phoneNum}</td>
+                                    <td class="px-4 py-2 border-b">
+                                        <button class="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600 transition-colors">Reopen</button>
+                                    </td>
+                                    <td class="px-4 py-2 border-b">
+                                        <span class="${bli06.status == 'Completed' ? 'text-green-500' : 'text-red-500'} font-semibold">
+                                            ${bli06.status}
+                                        </span>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination Info -->
+                <div class="mt-4 text-sm text-gray-600">
+                    Showing data 1 to ${phase4.size()} of ${phase4.size()} entries
+                </div>
+            </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-            <%@ include file="/WEB-INF/jspf/lecturer/footer.jspf" %>
-</body>
+    <script>
+        // Function to handle BLI selection from dropdown
+        function selectBLI(name) {
+            document.getElementById('dropdownMenuButton').textContent = name;
+            document.getElementById('selectedBLIInput').value = name;
+            document.getElementById('BLIFilterForm').submit();
+        }
 
+        // Toggle dropdown menu
+        document.getElementById('dropdownMenuButton').addEventListener('click', function() {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.classList.toggle('hidden');
+        });
+
+        // Toggle sort dropdown menu
+        document.getElementById('sortDropdown').addEventListener('click', function() {
+            const sortMenu = document.getElementById('sortMenu');
+            sortMenu.classList.toggle('hidden');
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            const sortMenu = document.getElementById('sortMenu');
+            const dropdownButton = document.getElementById('dropdownMenuButton');
+            const sortButton = document.getElementById('sortDropdown');
+
+            if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.add('hidden');
+            }
+            if (!sortButton.contains(event.target) && !sortMenu.contains(event.target)) {
+                sortMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
+   
+</body>
 </html>

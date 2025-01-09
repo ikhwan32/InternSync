@@ -46,13 +46,13 @@
                 <div class="min-h-screen flex">
                     <!-- Sidebar -->
                     <c:set var="page" value="task" scope="request" />
-                    <%@ include file="/WEB-INF/jspf/supervisor/sidebar.jspf" %>
+                    <%@ include file="/WEB-INF/jspf/lecturer/sidebar.jspf" %>
 
                         <!-- Main Content -->
                         <div class="flex-1">
                             <!-- Top bar -->
                             <c:set var="page" value="bli08" scope="request" />
-                            <%@ include file="/WEB-INF/jspf/supervisor/top.jspf" %>
+                            <%@ include file="/WEB-INF/jspf/lecturer/top.jspf" %>
 
                                 <!-- Page Content -->
                                 <div class="p-8">

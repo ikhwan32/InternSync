@@ -1,5 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.internship.model.BLI01" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,17 +64,17 @@
                 <div class="bg-white rounded-xl shadow-sm p-6 text-center">
                     <img src="<c:url value='/assets/images/icon1.png'/>" alt="Total Students" class="w-12 h-12 mx-auto mb-2">
                     <h2 class="text-lg font-semibold text-gray-900">Total Students</h2>
-                    <p class="text-2xl font-bold text-blue-500">${totalStudents2}</p>
+                    <p class="text-2xl font-bold text-blue-500">${totalStudents4}</p>
                 </div>
                 <div class="bg-white rounded-xl shadow-sm p-6 text-center">
                     <img src="<c:url value='/assets/images/completed.png'/>" alt="Completed" class="w-12 h-12 mx-auto mb-2">
                     <h2 class="text-lg font-semibold text-gray-900">Completed</h2>
-                    <p class="text-2xl font-bold text-green-500">${totalCompleted2}</p>
+                    <p class="text-2xl font-bold text-green-500">${totalCompleted4}</p>
                 </div>
                 <div class="bg-white rounded-xl shadow-sm p-6 text-center">
                     <img src="<c:url value='/assets/images/uncompleted.png'/>" alt="Uncompleted" class="w-12 h-12 mx-auto mb-2">
                     <h2 class="text-lg font-semibold text-gray-900">Uncompleted</h2>
-                    <p class="text-2xl font-bold text-red-500">${totalUncompleted2}</p>
+                    <p class="text-2xl font-bold text-red-500">${totalUncompleted4}</p>
                 </div>
             </div>
 
@@ -80,7 +83,7 @@
                 <div class="flex justify-between items-center mb-6">
                     <div>
                         <h2 class="text-xl font-bold text-gray-900">PHASE 3</h2>
-                        <p class="text-sm text-gray-600">BLI 04</p>
+                        <p class="text-sm text-gray-600">BLI 07</p>
                     </div>
                     <div class="relative">
                         <button class="bg-white border border-blue-500 text-gray-700 px-4 py-2 rounded-md flex items-center" id="sortDropdown">
@@ -106,26 +109,26 @@
                         <thead>
                             <tr>
                                 <th class="px-4 py-2 border-b">Student Name</th>
-                                <th class="px-4 py-2 border-b">Company</th>
                                 <th class="px-4 py-2 border-b">Phone Number</th>
-                                <th class="px-4 py-2 border-b">Email</th>
+                                <th class="px-4 py-2 border-b">Start Date</th>
+                                <th class="px-4 py-2 border-b">End Date</th>
                                 <th class="px-4 py-2 border-b">Action</th>
                                 <th class="px-4 py-2 border-b">Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="bli04" items="${phase3}">
+                            <c:forEach var="bli07" items="${phase37}">
                                 <tr>
-                                    <td class="px-4 py-2 border-b">${bli04.name}</td>
-                                    <td class="px-4 py-2 border-b">${bli04.compName}</td>
-                                    <td class="px-4 py-2 border-b">${bli04.phoneNum}</td>
-                                    <td class="px-4 py-2 border-b">${bli04.email}</td>
+                                    <td class="px-4 py-2 border-b">${bli07.name}</td>
+                                    <td class="px-4 py-2 border-b">${bli07.phoneNum}</td>
+                                    <td class="px-4 py-2 border-b">${bli07.startDate}</td>
+                                    <td class="px-4 py-2 border-b">${bli07.endDate}</td>
                                     <td class="px-4 py-2 border-b">
                                         <button class="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600 transition-colors">Reopen</button>
                                     </td>
                                     <td class="px-4 py-2 border-b">
-                                        <span class="${bli04.status == 'Completed' ? 'text-green-500' : 'text-red-500'} font-semibold">
-                                            ${bli04.status}
+                                        <span class="${bli07.status == 'Completed' ? 'text-green-500' : 'text-red-500'} font-semibold">
+                                            ${bli07.status}
                                         </span>
                                     </td>
                                 </tr>
@@ -136,7 +139,7 @@
 
                 <!-- Pagination Info -->
                 <div class="mt-4 text-sm text-gray-600">
-                    Showing data 1 to ${phase3.size()} of ${phase3.size()} entries
+                    Showing data 1 to ${phase37.size()} of ${phase37.size()} entries
                 </div>
             </div>
         </div>
@@ -178,6 +181,6 @@
         });
     </script>
 
-
+    
 </body>
 </html>
