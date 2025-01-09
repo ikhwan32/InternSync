@@ -1,102 +1,60 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Supervisor Dashboard - Internship Management System</title>
-    <style>
-        body {
-            background-image: url('<c:url value="/assets/images/background.png"/>'); 
-            background-size: cover;     
-            background-repeat: no-repeat; 
-            background-attachment: fixed; 
-            background-position: center;  
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            
-        }
-        .cards {
-            display: flex;
-            justify-content: center;
-            gap: 100px;
-            margin-top: 30px;
-        }
-        .card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            padding: 30px;
-            width: 400px;
-            margin-top: 140px;
-        }
-        .card .icon {
-            font-size: 50px;
-            color: #007bff;
-            margin-bottom: 10px;
-        }
-        .card .count {
-            font-size: 30px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .card .label {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 15px;
-        }
-        .card .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .card .button:hover {
-            background-color: #0056b3;
-        }
-        .dashboard-container {
-            flex: 1; 
-            margin-left: 100px;
-            margin-right: 100px;
-        }        
-    </style>
+    <title>Student Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <c:set var="page" value="admin" scope="request"/>
-    <%@ include file="/WEB-INF/jspf/lecturer/header.jspf" %>
-    <div class="dashboard-container">
-    <div class="cards">
-            <div class="card" style="border-radius: 20px;">
-                <div class="icon">
-                    <img src="<c:url value='/assets/images/Users.png'/>">
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<body class="bg-gray-50 min-h-screen flex">
+    <c:set var="page" value="student" scope="request"/>
+
+    <!-- Sidebar -->
+    <%@ include file="/WEB-INF/jspf/lecturer/sidebar.jspf" %>
+
+    <!-- Main Content -->
+    <div class="flex-1">
+        <!-- Top Bar -->
+        <%@ include file="/WEB-INF/jspf/lecturer/top.jspf" %>
+
+        <!-- Page Content -->
+        <div class="p-8">
+            <!-- Filters Section -->
+            <div class="flex justify-between items-center mb-6">
+                <div class="flex items-center gap-4">
+                    <a href="dashboard.jsp" class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition-colors">Back</a>
                 </div>
-                <div class="count">4</div>
-                <div class="label">Student List</div>
-                <a href="studentList.jsp" class="button" style="background-color: #5D8BFF;">Open</a>
             </div>
-            <div class="card" style="border-radius: 20px;">
-                <div class="icon">
-                    <img src="<c:url value='/assets/images/Users.png'/>">
+
+            <!-- Stats Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <!-- Student List Card -->
+                <div class="bg-white rounded-xl shadow-sm p-6 text-center">
+                    <img src="<c:url value='/assets/images/Users.png'/>" alt="Student List" class="w-12 h-12 mx-auto mb-2">
+                    <h2 class="text-lg font-semibold text-gray-900">Student List</h2>
+                    <p class="text-2xl font-bold text-blue-500">4</p>
+                    <a href="studentList.jsp" class="inline-block mt-4 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">Open</a>
                 </div>
-                <div class="count">4</div>
-                <div class="label">Student Task</div>
-                <a href="studentTask.jsp" class="button" style="background-color: #5D8BFF;">Open</a>
+
+                <!-- Student Task Card -->
+                <div class="bg-white rounded-xl shadow-sm p-6 text-center">
+                    <img src="<c:url value='/assets/images/Users.png'/>" alt="Student Task" class="w-12 h-12 mx-auto mb-2">
+                    <h2 class="text-lg font-semibold text-gray-900">Student Task</h2>
+                    <p class="text-2xl font-bold text-blue-500">4</p>
+                    <a href="studentTask.jsp" class="inline-block mt-4 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">Open</a>
+                </div>
             </div>
-        </div>        
+        </div>
     </div>
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-            <%@ include file="/WEB-INF/jspf/lecturer/footer.jspf" %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

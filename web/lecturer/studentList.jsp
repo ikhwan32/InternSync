@@ -1,294 +1,168 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.internship.model.Student" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Academic Supervisor Dashboard - Internship Management System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-image: url('<c:url value="/assets/images/background.png"/>'); 
-            background-size: cover;     
-            background-repeat: no-repeat; 
-            background-attachment: fixed; 
-            background-position: center;  
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            
-        }
-
-        .dashboard-container {
-            flex: 1; 
-            margin-left: 100px;
-            margin-right: 100px;
-        }
-        .card {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            margin: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border: none;
-            overflow: hidden;
-            z-index: 1;
-        }
-        .card-outer{
-            background: none;
-            padding: 0px;
-            margin: 20px;
-            border: none;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            position: relative;
-        }
-        .card-inner{
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            margin: 30px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border: none;
-            flex: 1;
-            min-width: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 200px;
-        }
-        .cardforlogo{
-            background: none;
-            padding: 0px;
-            margin: 20px;
-            border: none;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
-            justify-content: center;
-        }
-        .cardforlogo img{
-            max-width: 100px;
-            height: auto;
-        }
-        .inner1{
-            padding: 0px;
-            margin: 0px;
-            border: none;
-            flex: 1;
-            min-width: 0px;
-            display: flex;
-            text-align: left;
-        }
-        .inner2{
-            padding: 0px;
-            margin: 0px;
-            border: none;
-            flex: 1;
-            min-width: 0px;
-            display: flex;
-        }
-         
-        .display-totalStudent{
-            text-align: center;
-            font-size: 20px;
-            font-weight: 500;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        .announcement-section {
-            background-color: #F8F9FA;
-            padding: 20px;
-            border-radius: 8px;
-            height: 100%;
-        }
-        .announcement-title {
-            text-align: center;
-            font-size: 20px;
-            font-weight: 500;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        .announcement-text {
-            font-size: 14px;
-            color: #666;
-        }
-        .dropdown{
-            position: absolute;
-            right: 0;
-        }
-        .btn-secondary.dropdown-toggle {
-            background-color: #ffffff; 
-            color: #333; 
-            border-color: #5D8BFF; 
-        }
-        .btn-secondary.dropdown-toggle:hover {
-            background-color: #5D8BFF; 
-            color: white; 
-            border-color: #5D8BFF; 
-        }
-        .dropdown-item:hover {
-            background-color: #5D8BFF; 
-            color: white;
-        }
-          .filters {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-
-        .filters .left-section {
-            margin: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .filters .back-button,
-        .filters .search input,
-        .filters .search select {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 40px;
-            width: 200px;
-        }
-
-        .filters .back-button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .filters .back-button:hover {
-            background-color: #0056b3;
-        }
-      
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <c:set var="page" value="admin" scope="request"/>
-    <%@ include file="/WEB-INF/jspf/lecturer/header.jspf" %>
-    
-    <div class="dashboard-container">
-        <div class="filters" style="margin-bottom: 0px;">
-            <div class="left-section" style="max-width: 500px; margin-right: 0px;">
-                <a href="student.jsp" class="btn btn-primary" style='background-color: #5D8BFF; border: none; flex-grow: 1; height: 50px; border-radius: 15px; align-content: center;'>Back</a>
-                    <div class="dropdown" style=''>
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100%; border-radius: 15px; height: 50px;">
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<body class="bg-gray-50 min-h-screen flex">
+    <c:set var="page" value="student" scope="request"/>
+
+    <!-- Sidebar -->
+    <%@ include file="/WEB-INF/jspf/lecturer/sidebar.jspf" %>
+
+    <!-- Main Content -->
+    <div class="flex-1">
+        <!-- Top Bar -->
+        <%@ include file="/WEB-INF/jspf/lecturer/top.jspf" %>
+
+        <!-- Page Content -->
+        <div class="p-8">
+            <!-- Filters Section -->
+            <div class="flex justify-between items-center mb-6">
+                <div class="flex items-center gap-4">
+                    <a href="student.jsp" class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition-colors">Back</a>
+                    <div class="relative">
+                        <button class="bg-white border border-blue-500 text-gray-700 px-4 py-2 rounded-md flex items-center" id="dropdownMenuButton">
                             ${param.selectedCourse != null ? param.selectedCourse : 'Select Course'}
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="#" onclick="selectCourse('CS110')">CS110</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="selectCourse('CS230')">CS230</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="selectCourse('CS270')">CS270</a></li>
+                        <ul class="absolute hidden bg-white border border-gray-200 rounded-md shadow-lg mt-1 w-full z-10" id="dropdownMenu">
+                            <li>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" onclick="selectCourse('CDCS110')">CDCSS110</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" onclick="selectCourse('CDCS230')">CDCSS230</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" onclick="selectCourse('CDCS270')">CDCSS270</a>
+                            </li>
                         </ul>
                     </div>
-                    <input type="hidden" name="selectedCourse" id="selectedCourseInput">
-                    <script>
-                        function selectCourse(name) {
-                            document.getElementById('dropdownMenuButton').textContent = name;
-                            document.getElementById('selectedCourseInput').value = name;
-                        }
-                    </script>
-                    <form action="submitDropdownSelection.jsp" method="POST">
-                        <div class="card-outer" style='margin: 0px; height: 50px;'>
-
-                            <input type="text" name="text" class="search" placeholder="Search here... " style="border-radius: 15px; border: none;">
-                            <a href="#" type="submit" class="btn btn-primary" style='width: 100px; background-color: #5D8BFF; border: none; border-radius: 15px; align-content: center;'>Search</a>
-                        </div>
-                    </form>
-            </div>
-            <!------------- ---------------->
-            <div class="card-inner">
-                <div class="cardforlogo">
-                    <img src="<c:url value='/assets/images/icon1.png'/>">
-                     <h3 class="display-totalStudent">
-                         <div class="inner2" style="padding-top: 20px; color: grey;">Total Students</div>
-                         <span>4</span>
-                     </h3>
+                    <input type="text" placeholder="Search name..." class="p-2 border rounded-md">
                 </div>
             </div>
-        </div>
-        
-        <!------------- internship list Section ---------------->            
-        <div class="card" style="border-radius: 20px; margin-top: 0px;">
-            <div class="card-outer">
-                <div class="inner2" style="padding-top: 20px; color: grey;">All Interns</div>
-                <div class="inner1" style="font-size: 20px; font-weight: 500;">Internship List</div>
-                <div class="dropdown" style="padding-top: 20px;">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="width: 150px; border-radius: 10px;">
-                      Sort by :
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <li><a class="dropdown-item" href="#">Newest</a></li>
-                      <li><a class="dropdown-item" href="#">Oldest</a></li>
-                    </ul>
+
+            <!-- Stats Section -->
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+                <div class="flex items-center gap-4">
+                    <img src="<c:url value='/assets/images/icon1.png'/>" alt="Total Students" class="w-12 h-12">
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-900">Total Students</h2>
+                        <p class="text-2xl font-bold text-blue-500">${totalStudent}</p>
+                    </div>
                 </div>
             </div>
-            
-            <div class="table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th scope="col" style="text-align: center;">Number</th>
-                      <th scope="col">Student Name</th>
-                      <th scope="col">Student ID</th>
-                      <th scope="col">Phone Number</th>
-                      <th scope="col">Email</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row" style="text-align: center;">1</th>
-                      <td>Student Name</td>
-                      <td>2024567890</td>
-                      <td>012 345 6789</td>
-                      <td>name@gmail.com</td>
-                    </tr>
-                    <tr>
-                      <th scope="row" style="text-align: center;">2</th>
-                      <td>Student Name</td>
-                      <td>2024567890</td>
-                      <td>012 345 6789</td>
-                      <td>name@gmail.com</td>
-                    </tr>
-                    <tr>
-                      <th scope="row" style="text-align: center;">3</th>
-                      <td>Student Name</td>
-                      <td>2024567890</td>
-                      <td>012 345 6789</td>
-                      <td>name@gmail.com</td>
-                    </tr>
-                    <tr>
-                      <th scope="row" style="text-align: center;">4</th>
-                      <td>Student Name</td>
-                      <td>2024567890</td>
-                      <td>012 345 6789</td>
-                      <td>name@gmail.com</td>
-                    </tr>
-                  </tbody>
-                </table>
-            </div>
-<span style="color: grey;">Showing data 1 to 4 of 4 entries</span>
 
+            <!-- Internship List Section -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900">Student List</h2>
+                        <p class="text-sm text-gray-600">All Students</p>
+                    </div>
+                    <div class="relative">
+                        <button class="bg-white border border-blue-500 text-gray-700 px-4 py-2 rounded-md flex items-center" id="sortDropdown">
+                            Sort by :
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <ul class="absolute hidden bg-white border border-gray-200 rounded-md shadow-lg mt-1 w-full z-10" id="sortMenu">
+                            <li>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">Newest</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">Oldest</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-200">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-2 border-b">Number</th>
+                                <th class="px-4 py-2 border-b">Student Name</th>
+                                <th class="px-4 py-2 border-b">Student ID</th>
+                                <th class="px-4 py-2 border-b">Phone Number</th>
+                                <th class="px-4 py-2 border-b">Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="student" items="${studentList}" varStatus="status">
+                                <tr>
+                                    <td class="px-4 py-2 border-b text-center">${status.index + 1}</td>
+                                    <td class="px-4 py-2 border-b">${student.studentName}</td>
+                                    <td class="px-4 py-2 border-b">${student.studentMatric}</td>
+                                    <td class="px-4 py-2 border-b">${student.studentPhone}</td>
+                                    <td class="px-4 py-2 border-b">${student.studentEmail}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination Info -->
+                <div class="mt-4 text-sm text-gray-600">
+                    Showing data 1 to ${studentList.size()} of ${studentList.size()} entries
+                </div>
+            </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <%@ include file="/WEB-INF/jspf/lecturer/footer.jspf" %>
-</body>
+    <script>
+        // Function to handle course selection from dropdown
+        function selectCourse(name) {
+            document.getElementById('dropdownMenuButton').textContent = name;
+            document.getElementById('selectedCourseInput').value = name;
+            document.getElementById('courseFilterForm').submit();
+        }
 
+        // Toggle dropdown menu
+        document.getElementById('dropdownMenuButton').addEventListener('click', function() {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.classList.toggle('hidden');
+        });
+
+        // Toggle sort dropdown menu
+        document.getElementById('sortDropdown').addEventListener('click', function() {
+            const sortMenu = document.getElementById('sortMenu');
+            sortMenu.classList.toggle('hidden');
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            const sortMenu = document.getElementById('sortMenu');
+            const dropdownButton = document.getElementById('dropdownMenuButton');
+            const sortButton = document.getElementById('sortDropdown');
+
+            if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.add('hidden');
+            }
+            if (!sortButton.contains(event.target) && !sortMenu.contains(event.target)) {
+                sortMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
+    
+</body>
 </html>
