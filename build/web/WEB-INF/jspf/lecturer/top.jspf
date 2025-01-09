@@ -3,9 +3,16 @@
     <c:set var="pageNames" value="${{
     'dashboard': 'Dashboard',
     'task': 'Task',
-    'bli02': 'BLI 02 : Organization Approval Response Form',
-    'bli05': 'BLI 05 : Student Evaluation',
+    'bli06': 'BLI 06 : Industrial Training Visit Evaluation Form',
+    'bli08': 'BLI 08 : Academic Supervisor Evaluation Form',
     'attendance': 'Attendance',
+    'task': 'Task',
+    'phase1': 'Phase 01',
+    'phase2': 'Phase 02',
+    'phase3': 'Phase 03',
+    'phase4': 'Phase 04',
+    'student': 'Student Report',
+    'supervisor': 'Supervisor Report',
     'reports': 'Reports',
     'settings': 'Settings'
 }}" scope="request" />
