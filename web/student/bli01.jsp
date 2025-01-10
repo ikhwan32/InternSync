@@ -175,7 +175,7 @@
 
                                                             <!-- Form -->
                                                             <!-- Form -->
-                                                            <form action="..//BLI01Submit.do" method="POST"
+                                                            <form action="../BLI01Submit.do" method="POST"
                                                                 class="space-y-4">
                                                                 <!-- Reduced space-y-6 to space-y-4 -->
                                                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">

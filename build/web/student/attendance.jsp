@@ -1,8 +1,14 @@
-<%-- Document : attendance Created on : Dec 13, 2024, 1:41:53 AM Author : myPC --%>
+<%-- 
+    Document   : attendance
+    Created on : Jan 1, 2025, 9:42:22 PM
+    Author     : myPC
+--%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/jspf/auth/auth.jspf" %>
+<%@ include file="/WEB-INF/jspf/student/import.jspf" %>
 <!DOCTYPE html>
 <html lang="en">
 

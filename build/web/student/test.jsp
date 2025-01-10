@@ -1,14 +1,19 @@
+<%-- Document : attendance Created on : Dec 13, 2024, 1:41:53 AM Author : myPC --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="/WEB-INF/jspf/student/import.jspf" %>
+<%@ include file="/WEB-INF/jspf/auth/auth.jspf" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Logbook Calendar - Internship Management System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance - Student Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -19,52 +24,75 @@
 <body class="bg-gray-50">
     <div class="min-h-screen flex">
         <!-- Sidebar -->
+        <c:set var="page" value="attendance" scope="request" />
         <%@ include file="/WEB-INF/jspf/student/sidebar.jspf" %>
 
         <!-- Main Content -->
         <div class="flex-1">
             <!-- Top bar -->
+            <c:set var="pageName" value="attendance" scope="request" />
             <%@ include file="/WEB-INF/jspf/student/top.jspf" %>
 
             <!-- Page Content -->
             <div class="p-8">
-                <!-- Calendar Section -->
-                <div class="mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900">Logbook Calendar</h2>
-                    <p class="text-gray-600 mt-1">Select a date to update your logbook and attendance.</p>
-                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Attendance</h2>
 
+                <!-- Attendance Form -->
                 <div class="bg-white rounded-xl shadow-sm p-6">
-                    <table class="w-full text-center">
-                        <thead>
-                            <tr>
-                                <th class="p-2">Sun</th>
-                                <th class="p-2">Mon</th>
-                                <th class="p-2">Tue</th>
-                                <th class="p-2">Wed</th>
-                                <th class="p-2">Thu</th>
-                                <th class="p-2">Fri</th>
-                                <th class="p-2">Sat</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Example calendar rows -->
-                            <tr>
-                                <td class="p-2"><a href="logbook.jsp?date=2023-10-01" class="text-blue-500 hover:underline">1</a></td>
-                                <td class="p-2"><a href="logbook.jsp?date=2023-10-02" class="text-blue-500 hover:underline">2</a></td>
-                                <td class="p-2"><a href="logbook.jsp?date=2023-10-03" class="text-blue-500 hover:underline">3</a></td>
-                                <td class="p-2"><a href="logbook.jsp?date=2023-10-04" class="text-blue-500 hover:underline">4</a></td>
-                                <td class="p-2"><a href="logbook.jsp?date=2023-10-05" class="text-blue-500 hover:underline">5</a></td>
-                                <td class="p-2"><a href="logbook.jsp?date=2023-10-06" class="text-blue-500 hover:underline">6</a></td>
-                                <td class="p-2"><a href="logbook.jsp?date=2023-10-07" class="text-blue-500 hover:underline">7</a></td>
-                            </tr>
-                            <!-- Add more rows as needed -->
-                        </tbody>
-                    </table>
+                    <form action="submitAttendance" method="post" enctype="multipart/form-data">
+                        <!-- Date Picker -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Select Date</label>
+                            <input type="text" id="attendanceDate" name="attendanceDate"
+                                class="w-full p-2 border border-gray-300 rounded-lg flatpickr"
+                                placeholder="Select date">
+                        </div>
+
+                        <!-- Attendance Status -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Attendance Status</label>
+                            <select name="attendanceStatus" class="w-full p-2 border border-gray-300 rounded-lg">
+                                <option value="present">Present</option>
+                                <option value="absent">Absent</option>
+                                <option value="late">Late</option>
+                            </select>
+                        </div>
+
+                        <!-- Reason for Absent/Late -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Reason for Absent/Late</label>
+                            <textarea name="reason" rows="3" class="w-full p-2 border border-gray-300 rounded-lg"
+                                placeholder="Enter reason..."></textarea>
+                        </div>
+
+                        <!-- Supporting Document -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Supporting Document</label>
+                            <input type="file" name="supportingDocument"
+                                class="w-full p-2 border border-gray-300 rounded-lg">
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit"
+                            class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200">
+                            Submit Attendance
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Initialize Flatpickr for the date picker
+        flatpickr("#attendanceDate", {
+            dateFormat: "d-m-Y", // Format: YYYY-MM-DD
+            defaultDate: "today", // Default to today's date
+            maxDate: "today",
+        });
+    </script>
 </body>
 
 </html>

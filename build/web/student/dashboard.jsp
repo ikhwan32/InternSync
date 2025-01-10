@@ -3,6 +3,7 @@
     <%@page contentType="text/html" pageEncoding="UTF-8" %>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <%@ include file="/WEB-INF/jspf/auth/auth.jspf" %>
+            <%@ include file="/WEB-INF/jspf/student/import.jspf" %>
                 <!DOCTYPE html>
                 <html lang="en">
                 <!-- Previous head section remains the same -->
