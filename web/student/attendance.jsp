@@ -50,7 +50,6 @@
                 <!-- Attendance Form -->
                 <div class="bg-white rounded-xl shadow-sm p-6">
                     <form action="../submitLog.do" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="type" value="attendance">
                         <input type="hidden" name="userID" value="<%= userID %>">
                         <!-- Date Picker -->
                         <div class="mb-6">
@@ -65,16 +64,8 @@
                             <label class="block text-sm font-medium text-gray-700 mb-2">Attendance Status</label>
                             <select name="attendanceStatus" class="w-full p-2 border border-gray-300 rounded-lg">
                                 <option value="1">Present</option>
-                                <option value="1">Absent</option>
                                 <option value="0">Late</option>
                             </select>
-                        </div>
-
-                        <!-- Reason for Absent/Late -->
-                        <div class="mb-6">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Reason for Absent/Late</label>
-                            <textarea name="reason" rows="3" class="w-full p-2 border border-gray-300 rounded-lg"
-                                placeholder="Enter reason..."></textarea>
                         </div>
 
                         <!-- Supporting Document -->
@@ -94,7 +85,7 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Supporting Document (Image/PDF)</label>
-                                    <input type="file" name="logbookDocument" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                                    <input type="file" name="logbookFile" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                                 </div>
                             </div>
                         </div>
