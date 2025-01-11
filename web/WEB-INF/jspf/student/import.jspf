@@ -4,10 +4,11 @@
 <%@ page import="com.internship.controller.DBConnection" %>
 <%@ page import="java.sql.*" %>
 <% 
+        int userID;
         Student student = null;
         try {
             Connection conn = DBConnection.dbConnect();
-            int userID = Integer.parseInt(session.getAttribute("userID").toString());
+            userID = Integer.parseInt(session.getAttribute("userID").toString());
             String sql = "SELECT * FROM student WHERE userID = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, userID);

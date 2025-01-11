@@ -100,6 +100,10 @@
         <servlet-name>BLI05Servlet</servlet-name>
         <servlet-class>com.internship.controller.BLI05Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>submitLog</servlet-name>
+        <servlet-class>com.internship.controller.submitLog</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login.do</url-pattern>
@@ -199,6 +203,10 @@
     <servlet-mapping>
         <servlet-name>BLI05Servlet</servlet-name>
         <url-pattern>/BLI05Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>submitLog</servlet-name>
+        <url-pattern>/submitLog.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

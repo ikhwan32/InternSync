@@ -9,6 +9,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/jspf/auth/auth.jspf" %>
 <%@ include file="/WEB-INF/jspf/student/import.jspf" %>
+<% 
+            userID = Integer.parseInt(session.getAttribute("userID").toString());
+          
+    %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +49,9 @@
 
                 <!-- Attendance Form -->
                 <div class="bg-white rounded-xl shadow-sm p-6">
-                    <form action="submitAttendance" method="post" enctype="multipart/form-data">
+                    <form action="../submitLog.do" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="type" value="attendance">
+                        <input type="hidden" name="userID" value="<%= userID %>">
                         <!-- Date Picker -->
                         <div class="mb-6">
                             <label class="block text-sm font-medium text-gray-700 mb-2">Select Date</label>
@@ -58,9 +64,9 @@
                         <div class="mb-6">
                             <label class="block text-sm font-medium text-gray-700 mb-2">Attendance Status</label>
                             <select name="attendanceStatus" class="w-full p-2 border border-gray-300 rounded-lg">
-                                <option value="present">Present</option>
-                                <option value="absent">Absent</option>
-                                <option value="late">Late</option>
+                                <option value="1">Present</option>
+                                <option value="1">Absent</option>
+                                <option value="0">Late</option>
                             </select>
                         </div>
 
@@ -76,6 +82,21 @@
                             <label class="block text-sm font-medium text-gray-700 mb-2">Supporting Document</label>
                             <input type="file" name="supportingDocument"
                                 class="w-full p-2 border border-gray-300 rounded-lg">
+                        </div>
+                        
+                        <!-- Logbook Entries Section -->
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4">Logbook Entries</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Logbook Entry</label>
+                                    <textarea name="logbookEntry" class="mt-1 block w-full p-2 border border-gray-300 rounded-md"></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Supporting Document (Image/PDF)</label>
+                                    <input type="file" name="logbookDocument" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Submit Button -->
