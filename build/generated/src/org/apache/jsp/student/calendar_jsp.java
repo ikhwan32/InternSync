@@ -6,8 +6,10 @@ import javax.servlet.jsp.*;
 import com.internship.model.Student;
 import com.internship.controller.DBConnection;
 import java.sql.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
-public final class logbook_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class calendar_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -22,8 +24,12 @@ public final class logbook_jsp extends org.apache.jasper.runtime.HttpJspBase
     _jspx_dependants.add("/WEB-INF/jspf/student/top.jspf");
   }
 
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_set_var_value_nobody;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_set_var_value_scope_nobody;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_out_value_nobody;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_fmt_formatDate_var_value_pattern_nobody;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_if_test;
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_forEach_var_end_begin;
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
@@ -32,13 +38,21 @@ public final class logbook_jsp extends org.apache.jasper.runtime.HttpJspBase
   }
 
   public void _jspInit() {
+    _jspx_tagPool_c_set_var_value_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_c_set_var_value_scope_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_c_out_value_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_fmt_formatDate_var_value_pattern_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_c_if_test = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
+    _jspx_tagPool_c_forEach_var_end_begin = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
   }
 
   public void _jspDestroy() {
+    _jspx_tagPool_c_set_var_value_nobody.release();
     _jspx_tagPool_c_set_var_value_scope_nobody.release();
+    _jspx_tagPool_c_out_value_nobody.release();
+    _jspx_tagPool_fmt_formatDate_var_value_pattern_nobody.release();
     _jspx_tagPool_c_if_test.release();
+    _jspx_tagPool_c_forEach_var_end_begin.release();
   }
 
   public void _jspService(HttpServletRequest request, HttpServletResponse response)
@@ -65,10 +79,10 @@ public final class logbook_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write('\r');
       out.write('\n');
 
@@ -103,7 +117,6 @@ public final class logbook_jsp extends org.apache.jasper.runtime.HttpJspBase
 
       out.write('\r');
       out.write('\n');
-      out.write('\r');
       out.write('\n');
       out.write("\r\n");
       out.write("\r\n");
@@ -147,37 +160,47 @@ public final class logbook_jsp extends org.apache.jasper.runtime.HttpJspBase
     
       out.write('\r');
       out.write('\n');
-      out.write('\r');
-      out.write('\n');
- 
-    userID = Integer.parseInt(session.getAttribute("userID").toString());
-    request.setAttribute("userID", userID); // Make userID available to JSTL
-
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("<!DOCTYPE html>\r\n");
-      out.write("<html lang=\"en\">\r\n");
-      out.write("<head>\r\n");
-      out.write("    <meta charset=\"UTF-8\">\r\n");
-      out.write("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n");
-      out.write("    <title>Attendance - Student Dashboard</title>\r\n");
-      out.write("    <script src=\"https://cdn.tailwindcss.com\"></script>\r\n");
-      out.write("    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap\" rel=\"stylesheet\">\r\n");
-      out.write("    <style>\r\n");
-      out.write("        body {\r\n");
-      out.write("            font-family: 'Inter', sans-serif;\r\n");
-      out.write("        }\r\n");
-      out.write("    </style>\r\n");
-      out.write("    <script src=\"https://cdn.jsdelivr.net/npm/sweetalert2@11\"></script>\r\n");
-      out.write("</head>\r\n");
-      out.write("\r\n");
-      out.write("<body class=\"bg-gray-50\">\r\n");
-      out.write("<div class=\"min-h-screen flex\">\r\n");
-      out.write("    ");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<!DOCTYPE html>\n");
+      out.write("<html lang=\"en\">\n");
+      out.write("<head>\n");
+      out.write("    <meta charset=\"UTF-8\">\n");
+      out.write("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
+      out.write("    <title>Calendar - Student Dashboard</title>\n");
+      out.write("    <script src=\"https://cdn.tailwindcss.com\"></script>\n");
+      out.write("    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap\" rel=\"stylesheet\">\n");
+      out.write("    <style>\n");
+      out.write("        body {\n");
+      out.write("            font-family: 'Inter', sans-serif;\n");
+      out.write("        }\n");
+      out.write("        table.calendar {\n");
+      out.write("            border-collapse: collapse;\n");
+      out.write("        }\n");
+      out.write("        table.calendar td {\n");
+      out.write("            border: 1px solid black;\n");
+      out.write("            padding: 8px;\n");
+      out.write("            text-align: center;\n");
+      out.write("            cursor: pointer;\n");
+      out.write("        }\n");
+      out.write("        table.calendar td.selected {\n");
+      out.write("            background-color: lightblue;\n");
+      out.write("        }\n");
+      out.write("    </style>\n");
+      out.write("</head>\n");
+      out.write("\n");
+      out.write("<body class=\"bg-gray-50\">\n");
+      out.write("    <div class=\"min-h-screen flex\">\n");
+      out.write("        <!-- Sidebar -->\n");
+      out.write("        ");
       if (_jspx_meth_c_set_0(_jspx_page_context))
         return;
-      out.write("\r\n");
-      out.write("    ");
+      out.write("\n");
+      out.write("        ");
       out.write("<div class=\"w-64 bg-white shadow-sm border-r\">\r\n");
       out.write("    <!-- Logo -->\r\n");
       out.write("    <div class=\"h-16 flex items-center px-6 border-b\">\r\n");
@@ -260,14 +283,16 @@ public final class logbook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        </div>\r\n");
       out.write("    </nav>\r\n");
       out.write("</div>");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("    <div class=\"flex-1\">\r\n");
-      out.write("        ");
+      out.write("\n");
+      out.write("\n");
+      out.write("        <!-- Main Content -->\n");
+      out.write("        <div class=\"flex-1\">\n");
+      out.write("            <!-- Top bar -->\n");
+      out.write("            ");
       if (_jspx_meth_c_set_1(_jspx_page_context))
         return;
-      out.write("\r\n");
-      out.write("        ");
+      out.write("\n");
+      out.write("            ");
       out.write("<div class=\"h-16 bg-white shadow-sm border-b flex items-center justify-between px-8\">\r\n");
       out.write("    <!-- Page Title -->\r\n");
       out.write("    ");
@@ -299,116 +324,88 @@ public final class logbook_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        </button>\r\n");
       out.write("    </div>\r\n");
       out.write("</div>");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("        <div class=\"p-8\">\r\n");
-      out.write("            <div class=\"bg-white rounded-xl shadow-sm p-6\">\r\n");
-      out.write("                ");
-      if (_jspx_meth_c_if_0(_jspx_page_context))
-        return;
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                <form id=\"attendanceForm\" action=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${isUpdate ? 'updateLog.do' : '../submitLog.do'}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\" method=\"post\" enctype=\"multipart/form-data\">\r\n");
-      out.write("                    <input type=\"hidden\" name=\"userID\" value=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${userID}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\">\r\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("            <!-- Page Content -->\n");
+      out.write("            <div class=\"p-8\">\n");
+      out.write("                <h2 class=\"text-2xl font-bold text-gray-900 mb-6\">Attendance</h2>\n");
+      out.write("\n");
+      out.write("                <!-- Calendar -->\n");
+      out.write("                <div class=\"bg-white rounded-xl shadow-sm p-6\">\n");
       out.write("                    ");
-      if (_jspx_meth_c_if_1(_jspx_page_context))
+
+                        // Get the current month and year
+                        Calendar today = Calendar.getInstance();
+                        int currentYear = today.get(Calendar.YEAR);
+                        int currentMonth = today.get(Calendar.MONTH); // 0-based index (Jan=0, Feb=1, ...)
+
+                        // Calculate the number of days in the current month
+                        Calendar cal = new GregorianCalendar(currentYear, currentMonth, 1);
+                        int daysInMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+                        // Calculate the first day of the week (1 = Sun, 2 = Mon, ..., 7 = Sat)
+                        int firstDayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+
+                        // Set variables for JSTL to use
+                        request.setAttribute("daysInMonth", daysInMonth);
+                        request.setAttribute("firstDayOfWeek", firstDayOfWeek);
+                    
+      out.write("\n");
+      out.write("\n");
+      out.write("                    ");
+      //  c:set
+      org.apache.taglibs.standard.tag.rt.core.SetTag _jspx_th_c_set_3 = (org.apache.taglibs.standard.tag.rt.core.SetTag) _jspx_tagPool_c_set_var_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.SetTag.class);
+      _jspx_th_c_set_3.setPageContext(_jspx_page_context);
+      _jspx_th_c_set_3.setParent(null);
+      _jspx_th_c_set_3.setVar("today");
+      _jspx_th_c_set_3.setValue( new java.util.Date() );
+      int _jspx_eval_c_set_3 = _jspx_th_c_set_3.doStartTag();
+      if (_jspx_th_c_set_3.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_3);
         return;
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                    <div class=\"mb-6\">\r\n");
-      out.write("                        <label class=\"block text-sm font-medium text-gray-700 mb-2\">Date</label>\r\n");
-      out.write("                        <input type=\"text\" name=\"attendanceDate\" value=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.date}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\" readonly>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("\r\n");
-      out.write("                    <!-- Attendance Status -->\r\n");
-      out.write("                    <div class=\"mb-6\">\r\n");
-      out.write("                        <label class=\"block text-sm font-medium text-gray-700 mb-2\">Attendance Status</label>\r\n");
-      out.write("                        <select name=\"attendanceStatus\" id=\"attendanceStatus\" class=\"w-full p-2 border border-gray-300 rounded-lg\">\r\n");
-      out.write("                            <option value=\"1\" ");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${attendanceStatus == 1 ? 'selected' : ''}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write(">Present</option>\r\n");
-      out.write("                            <option value=\"0\" ");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${attendanceStatus == 0 ? 'selected' : ''}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write(">Absent</option>\r\n");
-      out.write("                        </select>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("\r\n");
-      out.write("                    <!-- Supporting Document -->\r\n");
-      out.write("                    <div class=\"mb-6\">\r\n");
-      out.write("                        <label class=\"block text-sm font-medium text-gray-700 mb-2\">Supporting Document For Being Absent</label>\r\n");
-      out.write("                        ");
-      if (_jspx_meth_c_if_2(_jspx_page_context))
+      }
+      _jspx_tagPool_c_set_var_value_nobody.reuse(_jspx_th_c_set_3);
+      out.write("\n");
+      out.write("                    ");
+      if (_jspx_meth_fmt_formatDate_0(_jspx_page_context))
         return;
-      out.write("\r\n");
-      out.write("                        <input type=\"file\" name=\"supportingDocument\" id=\"supportingDocument\"\r\n");
-      out.write("                               class=\"w-full p-2 border border-gray-300 rounded-lg\" ");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${not empty attendFile ? 'disabled' : ''}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write(">\r\n");
-      out.write("                    </div>\r\n");
-      out.write("\r\n");
-      out.write("                    <!-- Logbook Entry -->\r\n");
-      out.write("                    <div class=\"mb-8\">\r\n");
-      out.write("                        <h3 class=\"text-xl font-semibold text-gray-900 mb-4\">Logbook Entries</h3>\r\n");
-      out.write("                        <div class=\"space-y-4\">\r\n");
-      out.write("                            <div>\r\n");
-      out.write("                                <label class=\"block text-sm font-medium text-gray-700\">Logbook Entry</label>\r\n");
-      out.write("                                <textarea name=\"logbookEntry\" id=\"logbookEntry\"\r\n");
-      out.write("                                          class=\"mt-1 block w-full p-2 border border-gray-300 rounded-md\">");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${logbookEntry}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</textarea>\r\n");
-      out.write("                            </div>\r\n");
-      out.write("                            <div>\r\n");
-      out.write("                                <label class=\"block text-sm font-medium text-gray-700\">Supporting Document</label>\r\n");
-      out.write("                                ");
-      if (_jspx_meth_c_if_3(_jspx_page_context))
+      out.write("\n");
+      out.write("\n");
+      out.write("                    <table class=\"calendar\">\n");
+      out.write("                        <thead>\n");
+      out.write("                            <tr>\n");
+      out.write("                                <th colspan=\"7\">");
+      if (_jspx_meth_c_out_0(_jspx_page_context))
         return;
-      out.write("\r\n");
-      out.write("                                <input type=\"file\" name=\"logbookFile\" id=\"logbookFile\"\r\n");
-      out.write("                                       class=\"mt-1 block w-full p-2 border border-gray-300 rounded-md\" ");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${not empty logbookFile ? 'disabled' : ''}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write(">\r\n");
-      out.write("                            </div>\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("\r\n");
-      out.write("                    <!-- Submit Button -->\r\n");
-      out.write("                    <button type=\"submit\" id=\"submitButton\"\r\n");
-      out.write("                            class=\"w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200\">\r\n");
-      out.write("                        ");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${isUpdate ? 'Update Attendance' : 'Submit Attendance'}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\r\n");
-      out.write("                    </button>\r\n");
-      out.write("                </form>\r\n");
-      out.write("            </div>\r\n");
-      out.write("        </div>\r\n");
-      out.write("    </div>\r\n");
-      out.write("</div>\r\n");
-      out.write("\r\n");
-      out.write("<script>\r\n");
-      out.write("    // JavaScript to enable/disable file input based on checkbox (Optional)\r\n");
-      out.write("    const replaceAttendFileCheckbox = document.querySelector('input[name=\"replaceAttendFile\"]');\r\n");
-      out.write("    const supportingDocumentInput = document.getElementById('supportingDocument');\r\n");
-      out.write("    if (replaceAttendFileCheckbox) {\r\n");
-      out.write("        replaceAttendFileCheckbox.addEventListener('change', () => {\r\n");
-      out.write("            supportingDocumentInput.disabled = !replaceAttendFileCheckbox.checked;\r\n");
-      out.write("        });\r\n");
-      out.write("    }\r\n");
-      out.write("\r\n");
-      out.write("    const replaceLogbookFileCheckbox = document.querySelector('input[name=\"replaceLogbookFile\"]');\r\n");
-      out.write("    const logbookFileInput = document.getElementById('logbookFile');\r\n");
-      out.write("    if (replaceLogbookFileCheckbox) {\r\n");
-      out.write("        replaceLogbookFileCheckbox.addEventListener('change', () => {\r\n");
-      out.write("            logbookFileInput.disabled = !replaceLogbookFileCheckbox.checked;\r\n");
-      out.write("        });\r\n");
-      out.write("    }\r\n");
-      out.write("</script>\r\n");
-      out.write("</body>\r\n");
+      out.write("</th>\n");
+      out.write("                            </tr>\n");
+      out.write("                            <tr>\n");
+      out.write("                                <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>\n");
+      out.write("                            </tr>\n");
+      out.write("                        </thead>\n");
+      out.write("                        <tbody>\n");
+      out.write("                            ");
+      if (_jspx_meth_c_forEach_0(_jspx_page_context))
+        return;
+      out.write("\n");
+      out.write("                        </tbody>\n");
+      out.write("                    </table>\n");
+      out.write("                </div>\n");
+      out.write("            </div>\n");
+      out.write("        </div>\n");
+      out.write("    </div>\n");
+      out.write("\n");
+      out.write("    <script>\n");
+      out.write("        // JavaScript to highlight selected date (optional)\n");
+      out.write("        const calendarDays = document.querySelectorAll('.calendar td');\n");
+      out.write("        calendarDays.forEach(day => {\n");
+      out.write("            day.addEventListener('click', () => {\n");
+      out.write("                calendarDays.forEach(d => d.classList.remove('selected'));\n");
+      out.write("                day.classList.add('selected');\n");
+      out.write("            });\n");
+      out.write("        });\n");
+      out.write("    </script>\n");
+      out.write("</body>\n");
       out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
@@ -483,27 +480,117 @@ public final class logbook_jsp extends org.apache.jasper.runtime.HttpJspBase
     return false;
   }
 
-  private boolean _jspx_meth_c_if_0(PageContext _jspx_page_context)
+  private boolean _jspx_meth_fmt_formatDate_0(PageContext _jspx_page_context)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
-    HttpServletRequest request = (HttpServletRequest)_jspx_page_context.getRequest();
+    //  fmt:formatDate
+    org.apache.taglibs.standard.tag.rt.fmt.FormatDateTag _jspx_th_fmt_formatDate_0 = (org.apache.taglibs.standard.tag.rt.fmt.FormatDateTag) _jspx_tagPool_fmt_formatDate_var_value_pattern_nobody.get(org.apache.taglibs.standard.tag.rt.fmt.FormatDateTag.class);
+    _jspx_th_fmt_formatDate_0.setPageContext(_jspx_page_context);
+    _jspx_th_fmt_formatDate_0.setParent(null);
+    _jspx_th_fmt_formatDate_0.setValue((java.util.Date) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${today}", java.util.Date.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_fmt_formatDate_0.setPattern("yyyy-MM");
+    _jspx_th_fmt_formatDate_0.setVar("currentMonthYear");
+    int _jspx_eval_fmt_formatDate_0 = _jspx_th_fmt_formatDate_0.doStartTag();
+    if (_jspx_th_fmt_formatDate_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_fmt_formatDate_var_value_pattern_nobody.reuse(_jspx_th_fmt_formatDate_0);
+      return true;
+    }
+    _jspx_tagPool_fmt_formatDate_var_value_pattern_nobody.reuse(_jspx_th_fmt_formatDate_0);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_out_0(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:out
+    org.apache.taglibs.standard.tag.rt.core.OutTag _jspx_th_c_out_0 = (org.apache.taglibs.standard.tag.rt.core.OutTag) _jspx_tagPool_c_out_value_nobody.get(org.apache.taglibs.standard.tag.rt.core.OutTag.class);
+    _jspx_th_c_out_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_out_0.setParent(null);
+    _jspx_th_c_out_0.setValue((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${currentMonthYear}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    int _jspx_eval_c_out_0 = _jspx_th_c_out_0.doStartTag();
+    if (_jspx_th_c_out_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+      _jspx_tagPool_c_out_value_nobody.reuse(_jspx_th_c_out_0);
+      return true;
+    }
+    _jspx_tagPool_c_out_value_nobody.reuse(_jspx_th_c_out_0);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_forEach_0(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:forEach
+    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_end_begin.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
+    _jspx_th_c_forEach_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_forEach_0.setParent(null);
+    _jspx_th_c_forEach_0.setVar("day");
+    _jspx_th_c_forEach_0.setBegin(1);
+    _jspx_th_c_forEach_0.setEnd(((java.lang.Integer) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${daysInMonth}", java.lang.Integer.class, (PageContext)_jspx_page_context, null)).intValue());
+    int[] _jspx_push_body_count_c_forEach_0 = new int[] { 0 };
+    try {
+      int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
+      if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+        do {
+          out.write("\n");
+          out.write("                                ");
+          if (_jspx_meth_c_if_0((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
+            return true;
+          out.write("\n");
+          out.write("                                <td>\n");
+          out.write("                                    <form action=\"attendance.jsp\" method=\"GET\">\n");
+          out.write("                                        <input type=\"hidden\" name=\"date\" value=\"");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${currentMonthYear}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write('-');
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${day < 10 ? '0' : ''}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${day}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\">\n");
+          out.write("                                        <button type=\"submit\">");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${day}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</button>\n");
+          out.write("                                    </form>\n");
+          out.write("                                </td>\n");
+          out.write("                                ");
+          if (_jspx_meth_c_if_1((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_0, _jspx_page_context, _jspx_push_body_count_c_forEach_0))
+            return true;
+          out.write("\n");
+          out.write("                            ");
+          int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
+          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+            break;
+        } while (true);
+      }
+      if (_jspx_th_c_forEach_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        return true;
+      }
+    } catch (Throwable _jspx_exception) {
+      while (_jspx_push_body_count_c_forEach_0[0]-- > 0)
+        out = _jspx_page_context.popBody();
+      _jspx_th_c_forEach_0.doCatch(_jspx_exception);
+    } finally {
+      _jspx_th_c_forEach_0.doFinally();
+      _jspx_tagPool_c_forEach_var_end_begin.reuse(_jspx_th_c_forEach_0);
+    }
+    return false;
+  }
+
+  private boolean _jspx_meth_c_if_0(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
     //  c:if
     org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_0 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
     _jspx_th_c_if_0.setPageContext(_jspx_page_context);
-    _jspx_th_c_if_0.setParent(null);
-    _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${not empty param.date}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    _jspx_th_c_if_0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
+    _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${(day + firstDayOfWeek - 2) % 7 == 0}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
     int _jspx_eval_c_if_0 = _jspx_th_c_if_0.doStartTag();
     if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\r\n");
-        out.write("                    ");
-        if (true) {
-          _jspx_page_context.forward("checkLogbookServlet" + "?" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("date", request.getCharacterEncoding())+ "=" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.date}", java.lang.String.class, (PageContext)_jspx_page_context, null), request.getCharacterEncoding()) + "&" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("userID", request.getCharacterEncoding())+ "=" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${userID}", java.lang.String.class, (PageContext)_jspx_page_context, null), request.getCharacterEncoding()));
-          return true;
-        }
-        out.write("\r\n");
-        out.write("                ");
+        out.write("\n");
+        out.write("                                    <tr>\n");
+        out.write("                                ");
         int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -517,24 +604,21 @@ public final class logbook_jsp extends org.apache.jasper.runtime.HttpJspBase
     return false;
   }
 
-  private boolean _jspx_meth_c_if_1(PageContext _jspx_page_context)
+  private boolean _jspx_meth_c_if_1(javax.servlet.jsp.tagext.JspTag _jspx_th_c_forEach_0, PageContext _jspx_page_context, int[] _jspx_push_body_count_c_forEach_0)
           throws Throwable {
     PageContext pageContext = _jspx_page_context;
     JspWriter out = _jspx_page_context.getOut();
     //  c:if
     org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_1 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
     _jspx_th_c_if_1.setPageContext(_jspx_page_context);
-    _jspx_th_c_if_1.setParent(null);
-    _jspx_th_c_if_1.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${isUpdate}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    _jspx_th_c_if_1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_forEach_0);
+    _jspx_th_c_if_1.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${(day + firstDayOfWeek - 1) % 7 == 0}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
     int _jspx_eval_c_if_1 = _jspx_th_c_if_1.doStartTag();
     if (_jspx_eval_c_if_1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
-        out.write("\r\n");
-        out.write("                        <input type=\"hidden\" name=\"operation\" value=\"update\">\r\n");
-        out.write("                        <input type=\"hidden\" name=\"logBookID\" value=\"");
-        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${logBookID}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("\">\r\n");
-        out.write("                    ");
+        out.write("\n");
+        out.write("                                    </tr>\n");
+        out.write("                                ");
         int evalDoAfterBody = _jspx_th_c_if_1.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -545,76 +629,6 @@ public final class logbook_jsp extends org.apache.jasper.runtime.HttpJspBase
       return true;
     }
     _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_1);
-    return false;
-  }
-
-  private boolean _jspx_meth_c_if_2(PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:if
-    org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_2 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
-    _jspx_th_c_if_2.setPageContext(_jspx_page_context);
-    _jspx_th_c_if_2.setParent(null);
-    _jspx_th_c_if_2.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${not empty attendFile}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
-    int _jspx_eval_c_if_2 = _jspx_th_c_if_2.doStartTag();
-    if (_jspx_eval_c_if_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
-      do {
-        out.write("\r\n");
-        out.write("                            <div id=\"existingAttendFile\" class=\"mb-2\">\r\n");
-        out.write("                                <p class=\"text-sm text-gray-600\">Current file: <span>");
-        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${attendFile}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("</span></p>\r\n");
-        out.write("                                <label>\r\n");
-        out.write("                                    <input type=\"checkbox\" name=\"replaceAttendFile\" value=\"true\"> Replace file?\r\n");
-        out.write("                                </label>\r\n");
-        out.write("                            </div>\r\n");
-        out.write("                        ");
-        int evalDoAfterBody = _jspx_th_c_if_2.doAfterBody();
-        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
-          break;
-      } while (true);
-    }
-    if (_jspx_th_c_if_2.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_2);
-      return true;
-    }
-    _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_2);
-    return false;
-  }
-
-  private boolean _jspx_meth_c_if_3(PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:if
-    org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_3 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
-    _jspx_th_c_if_3.setPageContext(_jspx_page_context);
-    _jspx_th_c_if_3.setParent(null);
-    _jspx_th_c_if_3.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${not empty logbookFile}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
-    int _jspx_eval_c_if_3 = _jspx_th_c_if_3.doStartTag();
-    if (_jspx_eval_c_if_3 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
-      do {
-        out.write("\r\n");
-        out.write("                                    <div id=\"existingLogbookFile\" class=\"mb-2\">\r\n");
-        out.write("                                        <p class=\"text-sm text-gray-600\">Current file: <span>");
-        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${logbookFile}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("</span></p>\r\n");
-        out.write("                                        <label>\r\n");
-        out.write("                                            <input type=\"checkbox\" name=\"replaceLogbookFile\" value=\"true\"> Replace file?\r\n");
-        out.write("                                        </label>\r\n");
-        out.write("                                    </div>\r\n");
-        out.write("                                ");
-        int evalDoAfterBody = _jspx_th_c_if_3.doAfterBody();
-        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
-          break;
-      } while (true);
-    }
-    if (_jspx_th_c_if_3.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_3);
-      return true;
-    }
-    _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_3);
     return false;
   }
 }

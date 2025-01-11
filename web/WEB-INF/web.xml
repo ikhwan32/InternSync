@@ -104,6 +104,10 @@
         <servlet-name>submitLog</servlet-name>
         <servlet-class>com.internship.controller.submitLog</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>checkLogbook</servlet-name>
+        <servlet-class>com.internship.controller.checkLogbook</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login.do</url-pattern>
@@ -207,6 +211,10 @@
     <servlet-mapping>
         <servlet-name>submitLog</servlet-name>
         <url-pattern>/submitLog.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>checkLogbook</servlet-name>
+        <url-pattern>/checkLogbook.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

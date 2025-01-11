@@ -1,12 +1,20 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%-- attendance.jsp --%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="/WEB-INF/jspf/auth/auth.jspf" %>
 <%@ include file="/WEB-INF/jspf/student/import.jspf" %>
-<!DOCTYPE html>
-<html>
+<% 
+    userID = Integer.parseInt(session.getAttribute("userID").toString());
+    request.setAttribute("userID", userID); // Make userID available to JSTL
+%>
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Logbook Entry - Internship Management System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance - Student Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -14,77 +22,116 @@
             font-family: 'Inter', sans-serif;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="bg-gray-50">
-    <div class="min-h-screen flex">
-        <!-- Sidebar -->
-        <%@ include file="/WEB-INF/jspf/student/sidebar.jspf" %>
+<div class="min-h-screen flex">
+    <c:set var="page" value="attendance" scope="request" />
+    <%@ include file="/WEB-INF/jspf/student/sidebar.jspf" %>
 
-        <!-- Main Content -->
-        <div class="flex-1">
-            <!-- Top bar -->
-            <%@ include file="/WEB-INF/jspf/student/top.jspf" %>
+    <div class="flex-1">
+        <c:set var="pageName" value="attendance" scope="request" />
+        <%@ include file="/WEB-INF/jspf/student/top.jspf" %>
 
-            <!-- Page Content -->
-            <div class="p-8">
-                <!-- Logbook Entry Section -->
-                <div class="mb-8">
-                    <h2 class="text-2xl font-bold text-gray-900">Logbook Entry for ${param.date}</h2>
-                    <p class="text-gray-600 mt-1">Fill in your attendance and logbook details for the selected date.</p>
-                </div>
+        <div class="p-8">
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <c:if test="${not empty param.date}">
+                    <jsp:forward page="checkLogbookServlet">
+                        <jsp:param name="date" value="${param.date}" />
+                        <jsp:param name="userID" value="${userID}" />
+                    </jsp:forward>
+                </c:if>
 
-                <div class="bg-white rounded-xl shadow-sm p-6">
-                    <form action="LogbookServlet" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="date" value="${param.date}">
+                <form id="attendanceForm" action="${isUpdate ? 'updateLog.do' : '../submitLog.do'}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="userID" value="${userID}">
+                    <c:if test="${isUpdate}">
+                        <input type="hidden" name="operation" value="update">
+                        <input type="hidden" name="logBookID" value="${logBookID}">
+                    </c:if>
 
-                        <!-- Attendance Section -->
-                        <div class="mb-8">
-                            <h3 class="text-xl font-semibold text-gray-900 mb-4">Attendance</h3>
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Attendance Status</label>
-                                    <select name="attendanceStatus" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
-                                        <option value="Present">Present</option>
-                                        <option value="Absent">Absent</option>
-                                        <option value="Late">Late</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Reason for Absence/Late</label>
-                                    <textarea name="reason" class="mt-1 block w-full p-2 border border-gray-300 rounded-md"></textarea>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Supporting Document (Image/PDF)</label>
-                                    <input type="file" name="attendanceDocument" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
-                                </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Date</label>
+                        <input type="text" name="attendanceDate" value="${param.date}" readonly>
+                    </div>
+
+                    <!-- Attendance Status -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Attendance Status</label>
+                        <select name="attendanceStatus" id="attendanceStatus" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="1" ${attendanceStatus == 1 ? 'selected' : ''}>Present</option>
+                            <option value="0" ${attendanceStatus == 0 ? 'selected' : ''}>Absent</option>
+                        </select>
+                    </div>
+
+                    <!-- Supporting Document -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Supporting Document For Being Absent</label>
+                        <c:if test="${not empty attendFile}">
+                            <div id="existingAttendFile" class="mb-2">
+                                <p class="text-sm text-gray-600">Current file: <span>${attendFile}</span></p>
+                                <label>
+                                    <input type="checkbox" name="replaceAttendFile" value="true"> Replace file?
+                                </label>
+                            </div>
+                        </c:if>
+                        <input type="file" name="supportingDocument" id="supportingDocument"
+                               class="w-full p-2 border border-gray-300 rounded-lg" ${not empty attendFile ? 'disabled' : ''}>
+                    </div>
+
+                    <!-- Logbook Entry -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Logbook Entries</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Logbook Entry</label>
+                                <textarea name="logbookEntry" id="logbookEntry"
+                                          class="mt-1 block w-full p-2 border border-gray-300 rounded-md">${logbookEntry}</textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Supporting Document</label>
+                                <c:if test="${not empty logbookFile}">
+                                    <div id="existingLogbookFile" class="mb-2">
+                                        <p class="text-sm text-gray-600">Current file: <span>${logbookFile}</span></p>
+                                        <label>
+                                            <input type="checkbox" name="replaceLogbookFile" value="true"> Replace file?
+                                        </label>
+                                    </div>
+                                </c:if>
+                                <input type="file" name="logbookFile" id="logbookFile"
+                                       class="mt-1 block w-full p-2 border border-gray-300 rounded-md" ${not empty logbookFile ? 'disabled' : ''}>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Logbook Entries Section -->
-                        <div class="mb-8">
-                            <h3 class="text-xl font-semibold text-gray-900 mb-4">Logbook Entries</h3>
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Logbook Entry</label>
-                                    <textarea name="logbookEntry" class="mt-1 block w-full p-2 border border-gray-300 rounded-md"></textarea>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Supporting Document (Image/PDF)</label>
-                                    <input type="file" name="logbookDocument" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <div class="flex justify-end">
-                            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Submit</button>
-                        </div>
-                    </form>
-                </div>
+                    <!-- Submit Button -->
+                    <button type="submit" id="submitButton"
+                            class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200">
+                        ${isUpdate ? 'Update Attendance' : 'Submit Attendance'}
+                    </button>
+                </form>
             </div>
         </div>
     </div>
-</body>
+</div>
 
+<script>
+    // JavaScript to enable/disable file input based on checkbox (Optional)
+    const replaceAttendFileCheckbox = document.querySelector('input[name="replaceAttendFile"]');
+    const supportingDocumentInput = document.getElementById('supportingDocument');
+    if (replaceAttendFileCheckbox) {
+        replaceAttendFileCheckbox.addEventListener('change', () => {
+            supportingDocumentInput.disabled = !replaceAttendFileCheckbox.checked;
+        });
+    }
+
+    const replaceLogbookFileCheckbox = document.querySelector('input[name="replaceLogbookFile"]');
+    const logbookFileInput = document.getElementById('logbookFile');
+    if (replaceLogbookFileCheckbox) {
+        replaceLogbookFileCheckbox.addEventListener('change', () => {
+            logbookFileInput.disabled = !replaceLogbookFileCheckbox.checked;
+        });
+    }
+</script>
+</body>
 </html>
